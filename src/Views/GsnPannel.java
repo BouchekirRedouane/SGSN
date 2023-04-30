@@ -1,24 +1,48 @@
 package Views;
 
+import Models.Element;
 import Models.Goal;
-import Models.Gsn;
+import Models.GSN;
+import Models.Solution;
+import Models.Strategy;
 import Views.Dialogs.NewGoalInputs;
 import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.io.File;
+import java.io.StringWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+
+
 
 public class GsnPannel extends javax.swing.JPanel {
 
-    Gsn gsn;
-
+    GSN gsn;
     String action;
-    Canvas canvas;
     MainFram mainFram;
+    jpanel jPanel6;
+//            = new jpanel(gsn);
+    String xmlString;
     
-    public GsnPannel(MainFram mainFram, Gsn gsn) {
-        initComponents();
+    
+  
+    
+    
+    
+    public GsnPannel(MainFram mainFram, GSN gsn) {
+        
         this.action = "None";
         this.mainFram = mainFram;
         this.gsn = gsn;
+        this.jPanel6= new jpanel(gsn,this);
+        initComponents();
         this.initAffichage();
+       
     }
 
     public void initAffichage() {
@@ -27,31 +51,63 @@ public class GsnPannel extends javax.swing.JPanel {
     }
 
     public void addElement(int x, int y) {
-        if (this.action.equals("Goal")) {
-            this.addGoal(x, y);
-        }
+//        if (this.action.equals("Goal")) {
+            this.addGoal(x, y);   
+//        }
+//        switch (this.action) {
+//            case "Goal" -> this.addGoal(x, y);
+//            case "Strategy" -> this.addGoal(x, y);    
+//            case "Solution" -> this.addGoal(x, y);    
+//        }
         
         this.mainFram.refreshScreen();
 
     }
 
-    public void addGoal(int x, int y) {
-
-        
+        public void addGoal(int x, int y) {
         NewGoalInputs newGoalInputs = new NewGoalInputs(mainFram, true);
-        Goal goal = newGoalInputs.getGoal();
-        if(goal != null)
-        {
-            GoalPannel goalPannel = new GoalPannel(goal, this);
-            goalPannel.setBounds(x, y, 140, 150);
-            this.jPanel6.add(goalPannel);
-            this.jPanel6.repaint();
-            this.jToggleButton1.setSelected(false);
-            this.action = "None";
-            this.jLabel6.setText("None");
+        switch (this.action) {
+            case "Goal":
+                Goal goal = newGoalInputs.getGoal(); 
+                 if(goal != null){
+                    goal.setX(x);
+                    goal.setY(y);
+                    gsn.addElementt(goal);
+                }
+                break;
+            case "Strategy":
+                 Strategy strategy = newGoalInputs.getStrategy(); 
+                if(strategy != null){
+                    strategy.setX(x);
+                    strategy.setY(y);
+                    gsn.addElementt(strategy);
+                }
+                break;    
+            case "Solution":
+                 Solution solution = newGoalInputs.getSolution(); 
+                if(solution != null){
+                    solution.setX(x);
+                    solution.setY(y);
+                    gsn.addElementt(solution);
+                }
+                break;    
         }
+                this.Goal_Btn.setSelected(false);
+                this.Strategy_Btn.setSelected(false);
+                this.action = "None";
+                this.jLabel6.setText("None");
+                this.jPanel6.setToggle(false);
+                    
+//        Goal goal = newGoalInputs.getGoal(); 
+        
+//whene editing this to accept all types of elements  add a switch case in line 47 of the class Newgoal input and pass the name of the element to the method so you construct the right object
+       
     }
-    
+       
+      public void modifyGoal(Element goal) {
+        NewGoalInputs newGoalInputs = new NewGoalInputs(mainFram, true,goal,gsn);
+       
+      }
     public void setGoalLocation(GoalPannel goalPannel, int x, int y){
         goalPannel.setLocation(x, y);            
     }
@@ -59,10 +115,37 @@ public class GsnPannel extends javax.swing.JPanel {
     
     public void deleteGoal(GoalPannel goalPannel)
     {
-        this.jPanel6.remove(goalPannel);
-        this.jPanel6.repaint();
-        this.jPanel6.validate();
+        jPanel6.remove(goalPannel);
+        jPanel6.repaint();
+        jPanel6.validate();
     }
+    
+     public GSN getGsn() {
+        return gsn;
+    }
+     
+    public void serialization() {
+        File file = new File("file.xml");
+        StringWriter sw = new StringWriter();
+        Marshaller marshaller;
+        try {
+            JAXBContext context = JAXBContext.newInstance(GSN.class);
+            marshaller = context.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            marshaller.marshal(gsn, sw);
+            marshaller.marshal(gsn, file);
+            xmlString = sw.toString();
+            jTextPane1.setText("");
+            jTextPane1.setText(xmlString);
+         
+            
+        } catch (JAXBException ex) {
+            Logger.getLogger(GsnPannel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+     
+
     
     
     
@@ -81,7 +164,9 @@ public class GsnPannel extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        Goal_Btn = new javax.swing.JToggleButton();
+        Strategy_Btn = new javax.swing.JToggleButton();
+        Solution_Btn = new javax.swing.JToggleButton();
         jToolBar2 = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -89,7 +174,7 @@ public class GsnPannel extends javax.swing.JPanel {
         jButton4 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
+  
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
@@ -138,11 +223,27 @@ public class GsnPannel extends javax.swing.JPanel {
             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
         );
 
-        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/GoalIcon.png"))); // NOI18N
-        jToggleButton1.setText("Goal");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        Goal_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/GoalIcon.png"))); // NOI18N
+        Goal_Btn.setText("Goal     ");
+        Goal_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                Goal_BtnActionPerformed(evt);
+            }
+        });
+
+        Strategy_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/GoalIcon.png"))); // NOI18N
+        Strategy_Btn.setText("Strategy");
+        Strategy_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Strategy_BtnActionPerformed(evt);
+            }
+        });
+
+        Solution_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/GoalIcon.png"))); // NOI18N
+        Solution_Btn.setText("Solution");
+        Solution_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Solution_BtnActionPerformed(evt);
             }
         });
 
@@ -153,7 +254,10 @@ public class GsnPannel extends javax.swing.JPanel {
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Goal_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Strategy_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Solution_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -161,7 +265,11 @@ public class GsnPannel extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jToggleButton1)
+                .addComponent(Goal_Btn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Strategy_Btn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Solution_Btn)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -195,10 +303,24 @@ public class GsnPannel extends javax.swing.JPanel {
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jToolBar2.add(jButton4);
 
+        jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabbedPane1MouseClicked(evt);
+            }
+        });
+
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel6.setAutoscrolls(true);
         jPanel6.setPreferredSize(new java.awt.Dimension(4000, 4000));
+        jPanel6.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel6MouseDragged(evt);
+            }
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jPanel6MouseMoved(evt);
+            }
+        });
         jPanel6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel6MouseClicked(evt);
@@ -206,13 +328,16 @@ public class GsnPannel extends javax.swing.JPanel {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanel6MousePressed(evt);
             }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jPanel6MouseReleased(evt);
+            }
         });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1336, Short.MAX_VALUE)
+            .addGap(0, 1316, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,7 +348,7 @@ public class GsnPannel extends javax.swing.JPanel {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 1340, Short.MAX_VALUE)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 1320, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -231,6 +356,12 @@ public class GsnPannel extends javax.swing.JPanel {
         );
 
         jTabbedPane1.addTab("GSN Viewer", new javax.swing.ImageIcon(getClass().getResource("/Ressources/GSN.png")), jPanel4); // NOI18N
+
+        jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel5MouseClicked(evt);
+            }
+        });
 
         jTextPane1.setEditable(false);
         jTextPane1.setBackground(new java.awt.Color(255, 255, 204));
@@ -240,7 +371,7 @@ public class GsnPannel extends javax.swing.JPanel {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1340, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1320, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,29 +404,101 @@ public class GsnPannel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        if (this.jToggleButton1.isSelected()) {
-            //set all other Button to unselected   
-            this.action = "Goal";
-            this.jLabel6.setText("Adding a Goal...");
-        } else {
-            this.action = "None";
-            this.jLabel6.setText("None...");
-        }
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    private void Goal_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Goal_BtnActionPerformed
+                            if (this.Goal_Btn.isSelected()) {
+                                //set all other Button to unselected   
+                                this.Strategy_Btn.setSelected(false);
+                                this.action = "Goal";
+                                this.jLabel6.setText("Adding a Goal...");
+                                jPanel6.setToggle(true);
+                                
+                            } else {
+                                this.action = "None";
+                                this.jLabel6.setText("None...");
+                                jPanel6.setToggle(false);
+                            }
+    }//GEN-LAST:event_Goal_BtnActionPerformed
 
     private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
+        if(this.action!="None"){
         int x = evt.getX();
         int y = evt.getY();
+        jPanel6.setMouseYf(y);
+        jPanel6.setMouseXf(x);
+        jPanel6.setClicked(true);
+         System.out.print(x+":x////y:"+y);
         addElement(x, y);
+        }else{
+            jPanel6.formMouseClicked(evt);
+        }
+        
+         
+         
+        
+        
+    
     }//GEN-LAST:event_jPanel6MouseClicked
 
     private void jPanel6MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MousePressed
-
+      jPanel6.formMousePressed(evt);
     }//GEN-LAST:event_jPanel6MousePressed
+
+    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
+          serialization();
+    }//GEN-LAST:event_jTabbedPane1MouseClicked
+
+    private void jPanel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseClicked
+        
+    }//GEN-LAST:event_jPanel5MouseClicked
+
+    private void jPanel6MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseReleased
+        jPanel6.formMouseReleased(evt);      
+    }//GEN-LAST:event_jPanel6MouseReleased
+
+    private void jPanel6MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseDragged
+       jPanel6.formMouseDragged( evt);
+    }//GEN-LAST:event_jPanel6MouseDragged
+
+    private void Strategy_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Strategy_BtnActionPerformed
+        if (this.Strategy_Btn.isSelected()) {
+            //set all other Button to unselected 
+            this.Goal_Btn.setSelected(false);
+            this.action = "Strategy";
+            this.jLabel6.setText("Adding a Strategy...");
+            jPanel6.setToggle(true);
+            System.out.print(jPanel6.isToggle());
+        } else {
+            this.action = "None";
+            this.jLabel6.setText("None...");
+            jPanel6.setToggle(false);
+            }
+    }//GEN-LAST:event_Strategy_BtnActionPerformed
+
+    private void Solution_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Solution_BtnActionPerformed
+   if (this.Solution_Btn.isSelected()) {
+            //set all other Button to unselected 
+            this.Goal_Btn.setSelected(false);
+            this.Strategy_Btn.setSelected(false);
+            this.action = "Solution";
+            this.jLabel6.setText("Adding a Solution...");
+            jPanel6.setToggle(true);
+            System.out.print(jPanel6.isToggle());
+        } else {
+            this.action = "None";
+            this.jLabel6.setText("None...");
+            jPanel6.setToggle(false);
+            }
+    }//GEN-LAST:event_Solution_BtnActionPerformed
+    private void jPanel6MouseMoved(java.awt.event.MouseEvent evt) {                                     
+    	jPanel6.jPanel6MouseMoved( evt);
+     }
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton Goal_Btn;
+    private javax.swing.JToggleButton Solution_Btn;
+    private javax.swing.JToggleButton Strategy_Btn;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -311,11 +514,10 @@ public class GsnPannel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
+ 
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextPane jTextPane1;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar2;
     // End of variables declaration//GEN-END:variables

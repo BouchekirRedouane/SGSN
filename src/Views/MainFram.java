@@ -1,7 +1,7 @@
 package Views;
 
 import Views.Dialogs.NewGsnInputs;
-import Models.Gsn;
+import Models.GSN;
 import javax.swing.JFrame;
 
 public class MainFram extends javax.swing.JFrame {
@@ -11,7 +11,8 @@ public class MainFram extends javax.swing.JFrame {
         initComponents();
         
         this.setLocationRelativeTo(null);
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+//        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            setSize(1000, 700);
         this.setVisible(true);
     }
 
@@ -24,9 +25,10 @@ public class MainFram extends javax.swing.JFrame {
     }
     
     
+    
     public void createNewGSN(String name, String path)
     {
-        Gsn gsn = new Gsn(name, path);
+        GSN gsn = new GSN(name, path);
         GsnPannel g = new GsnPannel(this, gsn);
         jTabbedPane2.addTab("GSN: "+ gsn.getName(), g);
         this.jTabbedPane2.setIconAt(this.jTabbedPane2.getTabCount()-1, new javax.swing.ImageIcon(getClass().getResource("/Ressources/GsnDiagram.png")));
@@ -135,6 +137,8 @@ public class MainFram extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MainFram.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

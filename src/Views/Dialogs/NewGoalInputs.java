@@ -1,24 +1,59 @@
 package Views.Dialogs;
 
+import Models.Element;
 import Models.Goal;
-import Views.GsnPannel;
+import Models.Strategy;
+import Models.GSN;
+import Models.Solution;
 
 public class NewGoalInputs extends javax.swing.JDialog {
+    Element element;
+    boolean modify;
+    GSN gsn;
 
     public NewGoalInputs(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        jButton3.setVisible(false);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+        
     }
-
-    
+//for edits and delets
+    public NewGoalInputs(java.awt.Frame parent, boolean modal,Element element,GSN gsn){
+        super(parent, modal);
+        this.gsn=gsn;
+        this.element = element;
+        modify=true;
+        initComponents();
+        this.jTextField1.setText(element.getID());
+        this.jTextArea1.setText(element.getDescreption());
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+        System.out.print("\n selected obj is :"+element.getID()+"\n");
+        modify=true;
+         
+        
+    }
     
     
     public void annuler()
     {
         this.jTextField1.setText("");
         this.jTextArea1.setText("");
+    }
+    public void modifier(){
+          
+        String ID = this.jTextField1.getText();
+        String Desc= this.jTextArea1.getText();
+        if(!"".equals(ID)){
+           element.setID(ID); 
+        }
+        if(!"".equals(Desc)){
+        element.setDescreption(Desc);
+        }
+        System.out.print("\n modifier method done :"+element.getID()+"\n");
+        
     }
     
     public Goal getGoal()
@@ -28,11 +63,33 @@ public class NewGoalInputs extends javax.swing.JDialog {
         Boolean result= this.checkInput(ID, Desc);
         if(result == true)
         {
-            Goal goal = new Goal(ID, Desc);
-            return goal;
+            Goal goall = new Goal(ID, Desc);
+            return goall;
         }
         return null;
     }
+     public Strategy getStrategy() {
+        String ID = this.jTextField1.getText();
+        String Desc= this.jTextArea1.getText();
+        Boolean result= this.checkInput(ID, Desc);
+        if(result == true)
+        {
+            Strategy strategyy = new Strategy(ID, Desc);
+            return strategyy;
+        }
+        return null;
+     }
+     public Solution getSolution() {
+        String ID = this.jTextField1.getText();
+        String Desc= this.jTextArea1.getText();
+        Boolean result= this.checkInput(ID, Desc);
+        if(result == true)
+        {
+            Solution solution = new Solution(ID, Desc);
+            return solution;
+        }
+        return null;
+     }
     
     public void quitter()
     {
@@ -96,7 +153,7 @@ public class NewGoalInputs extends javax.swing.JDialog {
 
         jLabel3.setText("Desc.");
 
-        jButton2.setBackground(new java.awt.Color(255, 0, 0));
+        jButton2.setBackground(new java.awt.Color(255, 153, 0));
         jButton2.setText("Quitter");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,8 +161,8 @@ public class NewGoalInputs extends javax.swing.JDialog {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(255, 153, 0));
-        jButton3.setText("Annuler");
+        jButton3.setBackground(new java.awt.Color(255, 0, 0));
+        jButton3.setText("Supprimer");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -188,17 +245,24 @@ public class NewGoalInputs extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        this.annuler();
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        this.quitter();
+       System.out.print("\n modify is false");
+        this.quitter();  
+        if (modify==true){
+        System.out.print("\n modify is true");
+        this.modifier();}
+            
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.quitter();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        gsn.deletElement(element);
+        this.quitter();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -242,7 +306,8 @@ public class NewGoalInputs extends javax.swing.JDialog {
             }
         });
     }
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -256,4 +321,6 @@ public class NewGoalInputs extends javax.swing.JDialog {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
+   
 }

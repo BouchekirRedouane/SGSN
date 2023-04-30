@@ -1,6 +1,7 @@
 
 package Views;
 
+import Models.GSN;
 import Models.Goal;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -20,7 +21,7 @@ public class GoalPannel extends javax.swing.JPanel {
     public void initAffichage()
     {
         this.jLabel3.setText(this.goal.getID());
-        this.jTextArea1.setText(this.goal.getDesc());
+        this.jTextArea1.setText(this.goal.getDescreption());
        
     }
     
@@ -156,6 +157,7 @@ public class GoalPannel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.gsnPannel.deleteGoal(this);
+        this.gsnPannel.getGsn().deletElement(goal);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

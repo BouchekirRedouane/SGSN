@@ -3,12 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/bouchekir/Documents/NetBeansProjects/GSNConstruct/src/Models/Gsn.java</file>
-            <file>file:/C:/Users/bouchekir/Documents/NetBeansProjects/GSNConstruct/src/Views/MainFram.java</file>
-            <file>file:/C:/Users/bouchekir/Documents/NetBeansProjects/GSNConstruct/src/Views/GoalPannel.java</file>
-            <file>file:/C:/Users/bouchekir/Documents/NetBeansProjects/GSNConstruct/src/Views/GsnPannel.java</file>
-            <file>file:/C:/Users/bouchekir/Documents/NetBeansProjects/GSNConstruct/src/gsnconstruct/GSNConstruct.java</file>
-            <file>file:/C:/Users/bouchekir/Documents/NetBeansProjects/GSNConstruct/src/Views/Dialogs/NewGoalInputs.java</file>
+            <file>file:/C:/Users/Mou%20nir/Documents/NetBeansProjects/SGSN/src/Models/Element.java</file>
+            <file>file:/C:/Users/Mou%20nir/Documents/NetBeansProjects/SGSN/src/Models/Goal.java</file>
+            <file>file:/C:/Users/Mou%20nir/Documents/NetBeansProjects/SGSN/src/Views/Dialogs/NewGsnInputs.java</file>
+            <file>file:/C:/Users/Mou%20nir/Documents/NetBeansProjects/SGSN/src/Views/MainFram.java</file>
+            <file>file:/C:/Users/Mou%20nir/Documents/NetBeansProjects/SGSN/src/Models/GSN.java</file>
+            <file>file:/C:/Users/Mou%20nir/Documents/NetBeansProjects/SGSN/src/Views/GsnPannel.java</file>
+            <file>file:/C:/Users/Mou%20nir/Documents/NetBeansProjects/SGSN/src/Views/jpanel.java</file>
+            <file>file:/C:/Users/Mou%20nir/Documents/NetBeansProjects/SGSN/src/Views/GoalPannel.java</file>
+            <file>file:/C:/Users/Mou%20nir/Documents/NetBeansProjects/SGSN/src/GSN_construct.java</file>
+            <file>file:/C:/Users/Mou%20nir/Documents/NetBeansProjects/SGSN/src/Views/Dialogs/NewGoalInputs.java</file>
         </group>
     </open-files>
 </project-private>

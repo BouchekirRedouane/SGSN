@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<GSN>
+    <name>Test</name>
+    <path>Test</path>
+    <elements>
+        <id>S1</id>
+        <x>3</x>
+        <y>6</y>
+        <height>76</height>
+        <width>28</width>
+        <descreption>dsa</descreption>
+    </elements>
+</GSN>
