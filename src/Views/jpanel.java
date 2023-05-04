@@ -4,7 +4,7 @@
  */
 package Views;
 
-import Models.Element;
+import Models.*;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -48,12 +48,20 @@ public class jpanel extends javax.swing.JPanel {
     
       private String buttonTextG = "G1\n\n Goal description goes here";
        private String buttonTextS = "S1\n\n Strategy description goes here";
+       private String buttonTextSn = "Sn1\n\n Solution description goes here";
+       private String buttonTextC = "C1\n\n Context description goes here";
+       private String buttonTextJ = "J1\n\n Justification description goes here";
+       private String buttonTextA = "A1\n\n Assumption description goes here";
+       
       
       
     @Override
-      public void paintComponent(Graphics g) {
-        
+      public void paintComponent(Graphics g) {        
         super.paintComponent(g);
+        
+               g.setFont(new Font("Arial", Font.BOLD, 16));
+              
+                  
         if (toggle==true) {
             switch (pannel.action) {
                 case "Goal":
@@ -62,17 +70,34 @@ public class jpanel extends javax.swing.JPanel {
                     goal.draw(g,mouseX,mouseY,buttonTextG);
                     break;
                 case "Strategy":
-//                     System.out.print("\n Switch case worcked for strategy hhhhhhhhhhhhhhhhhhhhhh");
+//                     System.out.print("\n Switch case worcked for strategy ");
                     Strategy strategy = new Strategy();
                     strategy.draw(g,mouseX,mouseY,buttonTextS);
                     break;
                 case "Solution":
-//                     System.out.print("\n Switch case worcked for strategy hhhhhhhhhhhhhhhhhhhhhh");
-                    Solution solution = new Solution();
-                    solution.draw(g,mouseX,mouseY,buttonTextS);
+//                     System.out.print("\n Switch case worcked for strategy ");
+                    Solution solution = new Solution("Sn22",buttonTextSn);
+                    solution.calcule_dimentions(g);
+                    solution.draw(g,mouseX,mouseY,buttonTextSn);
+                    break;
+                case "Context":
+//                     System.out.print("\n Switch case worcked for Context ");
+                    Context context = new Context();
+                    context.draw(g,mouseX,mouseY,buttonTextC);
+                    break;
+                case "Justification":
+//                     System.out.print("\n Switch case worcked for strategy ");
+                    Justification justification = new Justification("Sn22",buttonTextJ);
+                    justification.draw(g,mouseX,mouseY,buttonTextJ);
+                    break;
+                case "Assumption":
+//                     System.out.print("\n Switch case worcked for strategy ");
+                    Assumption assumption = new Assumption("Sn22",buttonTextA);
+                    assumption.draw(g,mouseX,mouseY,buttonTextA);
                     break;
             }            
           }
+
         Elementss = gsn.getElements();
         for (int i = 0; i < Elementss.size(); i++) {
              Element element = Elementss.get(i);

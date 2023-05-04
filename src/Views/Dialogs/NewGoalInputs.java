@@ -1,9 +1,12 @@
 package Views.Dialogs;
 
+import Models.Assumption;
+import Models.Context;
 import Models.Element;
 import Models.Goal;
 import Models.Strategy;
 import Models.GSN;
+import Models.Justification;
 import Models.Solution;
 
 public class NewGoalInputs extends javax.swing.JDialog {
@@ -52,6 +55,7 @@ public class NewGoalInputs extends javax.swing.JDialog {
         if(!"".equals(Desc)){
         element.setDescreption(Desc);
         }
+        
         System.out.print("\n modifier method done :"+element.getID()+"\n");
         
     }
@@ -86,10 +90,53 @@ public class NewGoalInputs extends javax.swing.JDialog {
         if(result == true)
         {
             Solution solution = new Solution(ID, Desc);
+           
             return solution;
         }
         return null;
      }
+      public Context getContext() {
+        String ID = this.jTextField1.getText();
+        String Desc= this.jTextArea1.getText();
+        Boolean result= this.checkInput(ID, Desc);
+        if(result == true)
+        {
+            Context context = new Context(ID, Desc);
+           
+            return context;
+        }
+        return null;
+    }
+
+    public Justification getJustification() {
+        String ID = this.jTextField1.getText();
+        String Desc= this.jTextArea1.getText();
+        
+        Boolean result= this.checkInput(ID, Desc);
+        if(result == true)
+        {
+            Justification justification = new Justification(ID, Desc);
+           
+            return justification;
+        }
+        return null;
+    }
+
+    public Assumption getAssumption() {
+            String ID = this.jTextField1.getText();
+        String Desc= this.jTextArea1.getText();
+        
+        Boolean result= this.checkInput(ID, Desc);
+        if(result == true)
+        {
+            Assumption assumption = new Assumption(ID, Desc);
+           
+            return assumption;
+        }
+        return null;
+
+    }
+
     
     public void quitter()
     {
@@ -322,5 +369,6 @@ public class NewGoalInputs extends javax.swing.JDialog {
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
+   
    
 }

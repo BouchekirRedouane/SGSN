@@ -1,14 +1,12 @@
 package Views;
 
+import Models.*;
 import Models.Element;
 import Models.Goal;
 import Models.GSN;
 import Models.Solution;
 import Models.Strategy;
 import Views.Dialogs.NewGoalInputs;
-import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.Graphics;
 import java.io.File;
 import java.io.StringWriter;
 import java.util.logging.Level;
@@ -51,21 +49,7 @@ public class GsnPannel extends javax.swing.JPanel {
     }
 
     public void addElement(int x, int y) {
-//        if (this.action.equals("Goal")) {
-            this.addGoal(x, y);   
-//        }
-//        switch (this.action) {
-//            case "Goal" -> this.addGoal(x, y);
-//            case "Strategy" -> this.addGoal(x, y);    
-//            case "Solution" -> this.addGoal(x, y);    
-//        }
-        
-        this.mainFram.refreshScreen();
-
-    }
-
-        public void addGoal(int x, int y) {
-        NewGoalInputs newGoalInputs = new NewGoalInputs(mainFram, true);
+  NewGoalInputs newGoalInputs = new NewGoalInputs(mainFram, true);
         switch (this.action) {
             case "Goal":
                 Goal goal = newGoalInputs.getGoal(); 
@@ -85,10 +69,38 @@ public class GsnPannel extends javax.swing.JPanel {
                 break;    
             case "Solution":
                  Solution solution = newGoalInputs.getSolution(); 
+                 
                 if(solution != null){
                     solution.setX(x);
                     solution.setY(y);
                     gsn.addElementt(solution);
+                }
+                break;    
+            case "Context":
+                 Context context = newGoalInputs.getContext(); 
+                 
+                if(context != null){
+                    context.setX(x);
+                    context.setY(y);
+                    gsn.addElementt(context);
+                }
+                break;    
+            case "Justification":
+                 Justification justification = newGoalInputs.getJustification(); 
+                 
+                if(justification != null){
+                    justification.setX(x);
+                    justification.setY(y);
+                    gsn.addElementt(justification);
+                }
+                break;    
+            case "Assumption":
+                 Assumption assumption = newGoalInputs.getAssumption(); 
+                 
+                if(assumption != null){
+                    assumption.setX(x);
+                    assumption.setY(y);
+                    gsn.addElementt(assumption);
                 }
                 break;    
         }
@@ -97,15 +109,23 @@ public class GsnPannel extends javax.swing.JPanel {
                 this.action = "None";
                 this.jLabel6.setText("None");
                 this.jPanel6.setToggle(false);
+                
+        this.mainFram.refreshScreen();
+
+    }
+
+//        public void addGoal(int x, int y) {
+      
                     
 //        Goal goal = newGoalInputs.getGoal(); 
         
 //whene editing this to accept all types of elements  add a switch case in line 47 of the class Newgoal input and pass the name of the element to the method so you construct the right object
        
-    }
+//    }
        
       public void modifyGoal(Element goal) {
         NewGoalInputs newGoalInputs = new NewGoalInputs(mainFram, true,goal,gsn);
+        
        
       }
     public void setGoalLocation(GoalPannel goalPannel, int x, int y){
@@ -144,6 +164,13 @@ public class GsnPannel extends javax.swing.JPanel {
         }
         
     }
+    public void deselectbtns(){
+         this.Goal_Btn.setSelected(false);
+            this.Solution_Btn.setSelected(false);
+            this.Context_Btn.setSelected(false);
+            this.Assumption_Btn.setSelected(false);
+            this.Justification_btn.setSelected(false);
+    }
      
 
     
@@ -167,6 +194,9 @@ public class GsnPannel extends javax.swing.JPanel {
         Goal_Btn = new javax.swing.JToggleButton();
         Strategy_Btn = new javax.swing.JToggleButton();
         Solution_Btn = new javax.swing.JToggleButton();
+        Context_Btn = new javax.swing.JToggleButton();
+        Justification_btn = new javax.swing.JToggleButton();
+        Assumption_Btn = new javax.swing.JToggleButton();
         jToolBar2 = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -174,7 +204,7 @@ public class GsnPannel extends javax.swing.JPanel {
         jButton4 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
-  
+
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
@@ -247,6 +277,30 @@ public class GsnPannel extends javax.swing.JPanel {
             }
         });
 
+        Context_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/GoalIcon.png"))); // NOI18N
+        Context_Btn.setText("Context");
+        Context_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Context_BtnActionPerformed(evt);
+            }
+        });
+
+        Justification_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/GoalIcon.png"))); // NOI18N
+        Justification_btn.setText("Justification");
+        Justification_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Justification_btnActionPerformed(evt);
+            }
+        });
+
+        Assumption_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/GoalIcon.png"))); // NOI18N
+        Assumption_Btn.setText("Assumption");
+        Assumption_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Assumption_BtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -257,7 +311,10 @@ public class GsnPannel extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Goal_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Strategy_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Solution_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Solution_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Context_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Justification_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Assumption_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -270,6 +327,12 @@ public class GsnPannel extends javax.swing.JPanel {
                 .addComponent(Strategy_Btn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Solution_Btn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Context_Btn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Assumption_Btn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Justification_btn)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -337,7 +400,7 @@ public class GsnPannel extends javax.swing.JPanel {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1316, Short.MAX_VALUE)
+            .addGap(0, 1296, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -348,7 +411,7 @@ public class GsnPannel extends javax.swing.JPanel {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 1320, Short.MAX_VALUE)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 1300, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -371,7 +434,7 @@ public class GsnPannel extends javax.swing.JPanel {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1320, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1300, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -407,7 +470,7 @@ public class GsnPannel extends javax.swing.JPanel {
     private void Goal_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Goal_BtnActionPerformed
                             if (this.Goal_Btn.isSelected()) {
                                 //set all other Button to unselected   
-                                this.Strategy_Btn.setSelected(false);
+                                deselectbtns();
                                 this.action = "Goal";
                                 this.jLabel6.setText("Adding a Goal...");
                                 jPanel6.setToggle(true);
@@ -462,7 +525,7 @@ public class GsnPannel extends javax.swing.JPanel {
     private void Strategy_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Strategy_BtnActionPerformed
         if (this.Strategy_Btn.isSelected()) {
             //set all other Button to unselected 
-            this.Goal_Btn.setSelected(false);
+           deselectbtns();
             this.action = "Strategy";
             this.jLabel6.setText("Adding a Strategy...");
             jPanel6.setToggle(true);
@@ -477,6 +540,7 @@ public class GsnPannel extends javax.swing.JPanel {
     private void Solution_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Solution_BtnActionPerformed
    if (this.Solution_Btn.isSelected()) {
             //set all other Button to unselected 
+            deselectbtns();
             this.Goal_Btn.setSelected(false);
             this.Strategy_Btn.setSelected(false);
             this.action = "Solution";
@@ -489,6 +553,51 @@ public class GsnPannel extends javax.swing.JPanel {
             jPanel6.setToggle(false);
             }
     }//GEN-LAST:event_Solution_BtnActionPerformed
+
+    private void Context_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Context_BtnActionPerformed
+  if (this.Context_Btn.isSelected()) {
+            //set all other Button to unselected 
+            deselectbtns();
+            this.Goal_Btn.setSelected(false);
+            this.action = "Context";
+            this.jLabel6.setText("Adding a Context...");
+            jPanel6.setToggle(true);
+            System.out.print(jPanel6.isToggle());
+        } else {
+            this.action = "None";
+            this.jLabel6.setText("None...");
+            jPanel6.setToggle(false);
+            }    }//GEN-LAST:event_Context_BtnActionPerformed
+
+    private void Justification_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Justification_btnActionPerformed
+  if (this.Justification_btn.isSelected()) {
+            //set all other Button to unselected 
+            deselectbtns();
+            this.Goal_Btn.setSelected(false);
+            this.action = "Justification";
+            this.jLabel6.setText("Adding a Justification...");
+            jPanel6.setToggle(true);
+            System.out.print(jPanel6.isToggle());
+        } else {
+            this.action = "None";
+            this.jLabel6.setText("None...");
+            jPanel6.setToggle(false);
+            }    }//GEN-LAST:event_Justification_btnActionPerformed
+
+    private void Assumption_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Assumption_BtnActionPerformed
+  if (this.Assumption_Btn.isSelected()) {
+            //set all other Button to unselected 
+            deselectbtns();
+            this.Goal_Btn.setSelected(false);
+            this.action = "Assumption";
+            this.jLabel6.setText("Adding a Assumption...");
+            jPanel6.setToggle(true);
+            System.out.print(jPanel6.isToggle());
+        } else {
+            this.action = "None";
+            this.jLabel6.setText("None...");
+            jPanel6.setToggle(false);
+            }    }//GEN-LAST:event_Assumption_BtnActionPerformed
     private void jPanel6MouseMoved(java.awt.event.MouseEvent evt) {                                     
     	jPanel6.jPanel6MouseMoved( evt);
      }
@@ -496,7 +605,10 @@ public class GsnPannel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton Assumption_Btn;
+    private javax.swing.JToggleButton Context_Btn;
     private javax.swing.JToggleButton Goal_Btn;
+    private javax.swing.JToggleButton Justification_btn;
     private javax.swing.JToggleButton Solution_Btn;
     private javax.swing.JToggleButton Strategy_Btn;
     private javax.swing.JButton jButton1;
@@ -514,7 +626,7 @@ public class GsnPannel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
- 
+
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextPane jTextPane1;
