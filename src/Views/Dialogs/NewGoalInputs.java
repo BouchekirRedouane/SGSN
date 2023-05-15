@@ -1,5 +1,6 @@
 package Views.Dialogs;
 
+import Controlers.GSN_Builder;
 import Models.Assumption;
 import Models.Context;
 import Models.Element;
@@ -8,25 +9,41 @@ import Models.Strategy;
 import Models.GSN;
 import Models.Justification;
 import Models.Solution;
+import Views.GsnPannel;
+import java.awt.event.KeyEvent;
 
 public class NewGoalInputs extends javax.swing.JDialog {
     Element element;
     boolean modify;
     GSN gsn;
+    GSN_Builder builder;
 
+    public NewGoalInputs(java.awt.Frame parent, boolean modal,GSN_Builder builder) {
+        super(parent, modal);
+        initComponents();
+        jButton3.setVisible(false);
+       
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+        this.builder=builder;
+//         this.gsn=builder.getGsn();
+    }
     public NewGoalInputs(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         jButton3.setVisible(false);
+       
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-        
     }
-//for edits and delets
+   
+
+////for edits and delets
     public NewGoalInputs(java.awt.Frame parent, boolean modal,Element element,GSN gsn){
         super(parent, modal);
         this.gsn=gsn;
         this.element = element;
+        builder=new GSN_Builder(gsn);
         modify=true;
         initComponents();
         this.jTextField1.setText(element.getID());
@@ -35,6 +52,9 @@ public class NewGoalInputs extends javax.swing.JDialog {
         this.setVisible(true);
         System.out.print("\n selected obj is :"+element.getID()+"\n");
         modify=true;
+        
+        
+        
          
         
     }
@@ -49,33 +69,39 @@ public class NewGoalInputs extends javax.swing.JDialog {
           
         String ID = this.jTextField1.getText();
         String Desc= this.jTextArea1.getText();
-        if(!"".equals(ID)){
-           element.setID(ID); 
-        }
-        if(!"".equals(Desc)){
-        element.setDescreption(Desc);
-        }
+//        if(!"".equals(ID)){
+//           element.setID(ID); 
+//        }
+//        if(!"".equals(Desc)){
+//        element.setDescreption(Desc);
+//        }
+        if(builder.CheckInput(ID, Desc))
+            builder.modifyElement(element,ID,Desc);
         
         System.out.print("\n modifier method done :"+element.getID()+"\n");
         
     }
     
     public Goal getGoal()
-    {
+    {   
         String ID = this.jTextField1.getText();
         String Desc= this.jTextArea1.getText();
-        Boolean result= this.checkInput(ID, Desc);
-        if(result == true)
-        {
-            Goal goall = new Goal(ID, Desc);
-            return goall;
-        }
+        Boolean result= builder.CheckInput(ID, Desc);
+        
+            if(result == true){
+                Goal goall = new Goal(ID, Desc);
+                return goall;
+            }
+       
         return null;
     }
      public Strategy getStrategy() {
+         jLabel4.setText("Strategy");
         String ID = this.jTextField1.getText();
         String Desc= this.jTextArea1.getText();
-        Boolean result= this.checkInput(ID, Desc);
+        
+        Boolean result= builder.CheckInput(ID, Desc);
+        
         if(result == true)
         {
             Strategy strategyy = new Strategy(ID, Desc);
@@ -86,7 +112,9 @@ public class NewGoalInputs extends javax.swing.JDialog {
      public Solution getSolution() {
         String ID = this.jTextField1.getText();
         String Desc= this.jTextArea1.getText();
-        Boolean result= this.checkInput(ID, Desc);
+       
+        Boolean result= builder.CheckInput(ID,Desc);
+        
         if(result == true)
         {
             Solution solution = new Solution(ID, Desc);
@@ -98,7 +126,7 @@ public class NewGoalInputs extends javax.swing.JDialog {
       public Context getContext() {
         String ID = this.jTextField1.getText();
         String Desc= this.jTextArea1.getText();
-        Boolean result= this.checkInput(ID, Desc);
+        Boolean result= builder.CheckInput(ID, Desc);
         if(result == true)
         {
             Context context = new Context(ID, Desc);
@@ -112,7 +140,7 @@ public class NewGoalInputs extends javax.swing.JDialog {
         String ID = this.jTextField1.getText();
         String Desc= this.jTextArea1.getText();
         
-        Boolean result= this.checkInput(ID, Desc);
+        Boolean result= builder.CheckInput(ID, Desc);
         if(result == true)
         {
             Justification justification = new Justification(ID, Desc);
@@ -126,7 +154,7 @@ public class NewGoalInputs extends javax.swing.JDialog {
             String ID = this.jTextField1.getText();
         String Desc= this.jTextArea1.getText();
         
-        Boolean result= this.checkInput(ID, Desc);
+        Boolean result= builder.CheckInput(ID, Desc);
         if(result == true)
         {
             Assumption assumption = new Assumption(ID, Desc);
@@ -143,16 +171,7 @@ public class NewGoalInputs extends javax.swing.JDialog {
         this.dispose();
     }
     
-    public boolean checkInput(String GsnName, String GsnPath)
-    {
-        if(GsnName.equals("") || GsnPath.equals(""))
-        {
-            System.out.println("Error name or path empty");
-            return false;
-        }
-        
-        return true;
-    }
+   
     
     
     
@@ -190,15 +209,21 @@ public class NewGoalInputs extends javax.swing.JDialog {
         jButton4 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("New Goal ");
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
-        jLabel1.setText("Veuillez préciser ID et Description du Goal:");
+        jLabel1.setText("Veuillez préciser ID et Description du ");
 
         jLabel2.setText("ID:");
 
-        jLabel3.setText("Desc.");
+        jLabel3.setText("Desc:");
 
         jButton2.setBackground(new java.awt.Color(255, 153, 0));
         jButton2.setText("Quitter");
@@ -228,6 +253,8 @@ public class NewGoalInputs extends javax.swing.JDialog {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
+        jLabel4.setText("...");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -235,23 +262,22 @@ public class NewGoalInputs extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel1)
                                     .addComponent(jSeparator1))
-                                .addGap(48, 48, 48))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel4))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel2))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane1)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))))))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+                                    .addComponent(jTextField1)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(131, 131, 131)
                         .addComponent(jButton4)
@@ -266,7 +292,9 @@ public class NewGoalInputs extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23)
@@ -293,7 +321,7 @@ public class NewGoalInputs extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       System.out.print("\n modify is false");
+     
         this.quitter();  
         if (modify==true){
         System.out.print("\n modify is true");
@@ -307,9 +335,16 @@ public class NewGoalInputs extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        gsn.deletElement(element);
+//        gsn.deletElement(element);
+        builder.deleteElement(element);
         this.quitter();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+             this.quitter();  
+         }
+    }//GEN-LAST:event_formKeyPressed
 
     /**
      * @param args the command line arguments
@@ -362,6 +397,7 @@ public class NewGoalInputs extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

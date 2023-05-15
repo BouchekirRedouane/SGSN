@@ -38,15 +38,15 @@ public class Assumption extends Element {
     int y1 = this.Y-height/2;
     int x2 = this.X + this.width/2+15;
     int y2 = this.Y + this.height/2+10;
-    
-     System.out.println(this.X+":x   Assumption    y:"+this.Y+"\n");
+
 
     
-    System.out.print("Assumption pressed");
+  
      
     // Check if the specified point is inside the bounding box
     if (x >= x1 && x <= x2 && y >= y1 && y <= y2) {
-       
+           
+     System.out.println(this.X+":x   Assumption    y:"+this.Y+"\n");
         return true;
         
     } else {
@@ -69,7 +69,11 @@ public class Assumption extends Element {
             int textWidth=1 ;
             int lineWidth;
             int textHeight = g.getFontMetrics().getHeight();
-            g.setColor(Color.BLACK);
+            if(this.Hover){
+                     g.setColor(Color.RED);
+                 }else{
+                 g.setColor(Color.BLACK);
+                 }
             
             
             for (String line : content.split("\n")) {
@@ -87,6 +91,12 @@ public class Assumption extends Element {
                  int buttonyc = Y-textHeight/2;
                  int buttonysurround=(int) (Y-textHeight*sqrt(2)/2);
                     
+                 g.setColor(Color.WHITE);
+                 g.fillRoundRect(buttonxc, buttonysurround, textWidth+textHeight, (int) (textHeight*sqrt(2)), textWidth+textHeight, textHeight*2);
+                 g.setColor(Color.BLACK);
+                 g.drawRoundRect(buttonxc, buttonysurround, textWidth+textHeight, (int) (textHeight*sqrt(2)), textWidth+textHeight, textHeight*2);
+
+                 
                     textHeight = g.getFontMetrics().getHeight();
                 for (String line : content.split("\n")) {
                   g.drawString(line, buttonxc+th/2, buttonyc+ textHeight);
@@ -94,14 +104,13 @@ public class Assumption extends Element {
 
                 
                 }
-                  g.drawRoundRect(buttonxc, buttonysurround, textWidth+textHeight, (int) (textHeight*sqrt(2)), textWidth+textHeight, textHeight*2);
                   
 //                  g.draw3DRect(buttonxc, buttonyc, textWidth+textHeight, textHeight, false);
-                    g.setColor(Color.BLUE);
-                    g.draw3DRect(buttonxc+th/2, buttonyc, textWidth, textHeight, false);
-                    g.setColor(Color.RED);
-
-                    g.draw3DRect(buttonxc, buttonysurround, textWidth+textHeight, (int) (textHeight*sqrt(2)), false);
+//                    g.setColor(Color.BLUE);
+//                    g.draw3DRect(buttonxc+th/2, buttonyc, textWidth, textHeight, false);
+//                    g.setColor(Color.RED);
+//
+//                    g.draw3DRect(buttonxc, buttonysurround, textWidth+textHeight, (int) (textHeight*sqrt(2)), false);
                   
                   width=textWidth;
                   height=textHeight;

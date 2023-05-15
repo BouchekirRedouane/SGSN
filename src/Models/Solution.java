@@ -9,15 +9,18 @@ import java.awt.Font;
 import java.awt.Graphics;
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Mou nir
  */
 public class Solution extends Element {
-    
+    @XmlTransient
     private int finalTW;
+    @XmlTransient
     private int textHeight;
+    @XmlTransient
     private int Fontheight;
     
 
@@ -126,9 +129,9 @@ public class Solution extends Element {
                 String id="";
                 int firstline=1;
                 
-                System.out.println("finalTW is :"+ finalTW);
-                System.out.println("textHeight is :"+ textHeight);
-                System.out.println("Fontheight is :"+ Fontheight);
+//                System.out.println("finalTW is :"+ finalTW);
+//                System.out.println("textHeight is :"+ textHeight);
+//                System.out.println("Fontheight is :"+ Fontheight);
                
                 
                   
@@ -151,15 +154,23 @@ public class Solution extends Element {
                 int wordX=0;
                 int wordY=0;
                 
-              
+              if(this.Hover){
+                     g.setColor(Color.RED);
+                 }else{
+                 g.setColor(Color.BLACK);
+                 }
                 
                 textHeight = Fontheight;
                 
                  int buttonYf=(int) (Y-finalTW/2);
                 int  buttonXf=(int)(X-finalTW/2);
-                g.setColor(Color.BLUE);
-                g.drawRect(buttonXf, buttonYf,finalTW,finalTW);
+//                g.setColor(Color.WHITE);
+//                g.drawRect(buttonXf, buttonYf,finalTW,finalTW);
+                Color color = new Color(248, 206, 204);
+                g.setColor(color);
+                g.fillOval(buttonX, buttonY, (int) (finalTW*mou3amil),(int) (finalTW*mou3amil));
                 g.setColor(Color.BLACK);
+                
                 for (String line : content.split("\n")) {
                     wordX= 0;
                     wordY += Fontheight;
@@ -181,11 +192,12 @@ public class Solution extends Element {
                 }}
                 
                 
+                 
                 g.drawString(id, buttonX+ (int) (finalTW*mou3amil)/2- g.getFontMetrics().stringWidth(id)/2,buttonY+Fontheight );
                 
                 g.drawOval(buttonX, buttonY, (int) (finalTW*mou3amil),(int) (finalTW*mou3amil));
-                g.setColor(Color.RED);
-                g.drawRect(buttonX, buttonY,(int) (finalTW*mou3amil),(int) (finalTW*mou3amil));
+//                g.setColor(Color.RED);
+//                g.drawRect(buttonX, buttonY,(int) (finalTW*mou3amil),(int) (finalTW*mou3amil));
                 
                
                   

@@ -4,12 +4,15 @@
  */
 package Views;
 
+import Controlers.GSN_Builder;
+import Controlers.GSN_Renderer;
 import Models.*;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import Models.GSN;
 import Models.Goal;
+import Models.Relation.Relations;
 import Models.Solution;
 import Models.Strategy;
 import java.util.ArrayList;
@@ -28,17 +31,29 @@ import java.util.ArrayList;
 public class jpanel extends javax.swing.JPanel {
     private int mouseX;
     private int mouseY;
+    private int mousePressX;
+    private int mousePressY;
+    private boolean press=false;
     private boolean toggle ;
     private int offsetX;
     private int offsetY;
     private GsnPannel pannel;
     GSN gsn;
     private ArrayList<Element> Elementss ;
+    private ArrayList<Relations> Relations ;
     private  Element selectedObject;
+    GSN_Builder builder;   
+    GSN_Renderer renderer;
 
     public jpanel(GSN gsn,GsnPannel pannel) {
         this.gsn = gsn;
         this.pannel=pannel;
+        builder = new GSN_Builder( gsn,  pannel, pannel.mainFram);
+        renderer = new GSN_Renderer(pannel);
+        Relations = gsn.getRelations();
+         Elementss = gsn.getElements();
+        
+        
     }
     
      
@@ -52,6 +67,10 @@ public class jpanel extends javax.swing.JPanel {
        private String buttonTextC = "C1\n\n Context description goes here";
        private String buttonTextJ = "J1\n\n Justification description goes here";
        private String buttonTextA = "A1\n\n Assumption description goes here";
+
+    public boolean isPress() {
+        return press;
+    }
        
       
       
@@ -63,47 +82,72 @@ public class jpanel extends javax.swing.JPanel {
               
                   
         if (toggle==true) {
-            switch (pannel.action) {
-                case "Goal":
-                     System.out.print("\n Switch case worcked ");
-                    Goal goal = new Goal();
-                    goal.draw(g,mouseX,mouseY,buttonTextG);
-                    break;
-                case "Strategy":
-//                     System.out.print("\n Switch case worcked for strategy ");
-                    Strategy strategy = new Strategy();
-                    strategy.draw(g,mouseX,mouseY,buttonTextS);
-                    break;
-                case "Solution":
-//                     System.out.print("\n Switch case worcked for strategy ");
-                    Solution solution = new Solution("Sn22",buttonTextSn);
-                    solution.calcule_dimentions(g);
-                    solution.draw(g,mouseX,mouseY,buttonTextSn);
-                    break;
-                case "Context":
-//                     System.out.print("\n Switch case worcked for Context ");
-                    Context context = new Context();
-                    context.draw(g,mouseX,mouseY,buttonTextC);
-                    break;
-                case "Justification":
-//                     System.out.print("\n Switch case worcked for strategy ");
-                    Justification justification = new Justification("Sn22",buttonTextJ);
-                    justification.draw(g,mouseX,mouseY,buttonTextJ);
-                    break;
-                case "Assumption":
-//                     System.out.print("\n Switch case worcked for strategy ");
-                    Assumption assumption = new Assumption("Sn22",buttonTextA);
-                    assumption.draw(g,mouseX,mouseY,buttonTextA);
-                    break;
-            }            
+            renderer.renderPreview( g,mouseX,mouseY ,mousePressX , mousePressY );
+//            switch (pannel.action) {
+//                case "Relation.support" -> {
+//                    if(press){
+//                        System.out.println("switch case draw entred");
+//                        g.setColor(Color.LIGHT_GRAY);
+//                        g.drawLine(mousePressX, mousePressY, mouseX, mouseY);
+//                    }
+//                }
+//                case "Relation.context" -> {
+//                    if(press){
+//                        System.out.println("\nPress= true\n");
+//                        g.setColor(Color.LIGHT_GRAY);
+//                        g.drawLine(mousePressX, mousePressY, mouseX, mouseY);
+//                    }
+//                }
+//                case "Goal" -> {
+//                    System.out.print("\n Switch case worcked ");
+//                    Goal goal = new Goal();
+//                    goal.draw(g,mouseX,mouseY,buttonTextG);
+//                }
+//                case "Strategy" -> {
+//                    //                     System.out.print("\n Switch case worcked for strategy ");
+//                    Strategy strategy = new Strategy();
+//                    strategy.draw(g,mouseX,mouseY,buttonTextS);
+//                }
+//                case "Solution" -> {
+//                    //                     System.out.print("\n Switch case worcked for strategy ");
+//                    Solution solution = new Solution("Sn22",buttonTextSn);
+//                    solution.calcule_dimentions(g);
+//                    solution.draw(g,mouseX,mouseY,buttonTextSn);
+//                }
+//                case "Context" -> {
+//                    //                     System.out.print("\n Switch case worcked for Context ");
+//                    Context context = new Context();
+//                    context.draw(g,mouseX,mouseY,buttonTextC);
+//                }
+//                case "Justification" -> {
+//                    //                     System.out.print("\n Switch case worcked for strategy ");
+//                    Justification justification = new Justification("Sn22",buttonTextJ);
+//                    justification.draw(g,mouseX,mouseY,buttonTextJ);
+//                }
+//                case "Assumption" -> {
+//                    //                     System.out.print("\n Switch case worcked for strategy ");
+//                    Assumption assumption = new Assumption("Sn22",buttonTextA);
+//                    assumption.draw(g,mouseX,mouseY,buttonTextA);
+//                }
+//
+//            }            
           }
+        renderer.renderComponents(g);
 
-        Elementss = gsn.getElements();
-        for (int i = 0; i < Elementss.size(); i++) {
-             Element element = Elementss.get(i);
-             element.draw(g);
-             
-        }
+//        Relations = gsn.getRelations();
+//	    if(Relations!=null)    
+//	        for (int i = 0; i < Relations.size(); i++) {
+//	             Relations relations = Relations.get(i);
+//	             relations.draw(g);
+//	             
+//	        }
+//        Elementss = gsn.getElements();
+//        if(Elementss!=null) 
+//        	for (int i = 0; i < Elementss.size(); i++) {
+//	             Element element = Elementss.get(i);
+//	             element.draw(g);
+//	             
+//	        }
       }
 
    
@@ -112,6 +156,14 @@ public class jpanel extends javax.swing.JPanel {
     
     
         void jPanel6MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseMoved
+              for (Element obj : Elementss) {
+             
+            if (obj.contains(evt.getX(), evt.getY())) {
+                obj.setHover(true);
+            }else{
+                obj.setHover(false);
+            }
+            }
         mouseX = evt.getX();
         mouseY = evt.getY();
         repaint();        // TODO add your handling code here:
@@ -120,11 +172,11 @@ public class jpanel extends javax.swing.JPanel {
     public void setClicked(boolean clicked) {
     }
 
-    public void setMouseXf(int mouseXf) {
-    }
-
-    public void setMouseYf(int mouseYf) {
-    }
+//    public void setMouseXf(int mouseXf) {
+//    }
+//
+//    public void setMouseYf(int mouseYf) {
+//    }
     public boolean isToggle() {
         return toggle;
     }
@@ -182,34 +234,79 @@ public class jpanel extends javax.swing.JPanel {
      
    public void formMousePressed(java.awt.event.MouseEvent evt) {
    
-       System.out.print("\n mouse pressed");
+      
+//                    System.out.println(mousePressX+":mousePressX////////////mousePressY:"+mousePressY);
+                    
        
-    for (Element obj : Elementss) {
-       
-        if (obj.contains(evt.getX(), evt.getY())) {
-             selectedObject = obj;
-            offsetX = evt.getX() - obj.getX();
-            offsetY = evt.getY() - obj.getY();
-            System.out.print("\n"+selectedObject.getID()+"\n");
-            break;
+        for (Element obj : Elementss) {
+             
+            if (obj.contains(evt.getX(), evt.getY())) {
+                if(pannel.action=="Relation.context"||pannel.action=="Relation.support"){
+//                        System.out.println(mousePressX+":mousePressX////////////mousePressY:"+mousePressY);
+//                       System.out.println("\n mouse pressed");
+//                       System.out.println("\n "+pannel.action);    
+                    press = true;
+                    mousePressX=evt.getX();
+                    mousePressY=evt.getY();
+                    System.out.println("\n "+obj.getID());    
+//                    pannel.addRelation(obj,true);
+                    selectedObject = obj;
+                     
+                }else{
+                    selectedObject = obj;
+                    offsetX = evt.getX() - obj.getX();
+                    offsetY = evt.getY() - obj.getY();
+                    System.out.print("\n"+selectedObject.getID()+"\n");           
+                }
+
+                break;
+            }
         }
-    }
 
             
     }                                 
 
     public void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
-        System.out.print("\n mouse dragged");
-        if (selectedObject != null) {
-        selectedObject.setX(evt.getX() - offsetX);
-        selectedObject.setY(evt.getY() - offsetY);
-        repaint();
-    }
+        System.out.println("\n mouse dragged");
+//        System.out.println("\n/////////////////////////"+press);
+        if (selectedObject != null){
+            if(pannel.action=="Relation.context"||pannel.action=="Relation.support"){
+                mouseX=evt.getX();
+                mouseY=evt.getY();
+
+//                       System.out.println(mousePressX+":mousePressX////////////mousePressY:"+mousePressY);
+//                       System.out.println(mouseX+":mouseX////////////mouseY:"+mouseY);
+//                       System.out.println("///////////////////////////////////////////////////////////////////////////");
+//                       
+            
+            }else {
+            selectedObject.setX(evt.getX() - offsetX);
+            selectedObject.setY(evt.getY() - offsetY);
+
+            }
+                        repaint();
+        }
     }//GEN-LAST:event_formMouseDragged
 
     public void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
         System.out.print("\n mouse Released");
-        selectedObject = null;
+        press = false;
+        if(pannel.action=="Relation.context"||pannel.action=="Relation.support"){
+          for (Element obj : Elementss) {
+             
+                if (obj.contains(evt.getX(), evt.getY())) {
+          
+                    builder.addRelation(selectedObject,obj );
+
+                    press = false;
+                }
+             
+            }
+        }
+                selectedObject = null;
+                    System.out.println("/////////////////////////////BUTTON PRESS ENDDEd/////////////////////////////");
+                
+        
     }//GEN-LAST:event_formMouseReleased
 
     public void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked

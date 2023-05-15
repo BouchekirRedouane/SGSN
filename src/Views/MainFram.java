@@ -2,19 +2,53 @@ package Views;
 
 import Views.Dialogs.NewGsnInputs;
 import Models.GSN;
+import java.io.File;
+import java.io.FileNotFoundException;
 import javax.swing.JFrame;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+
+import Controlers.Files_management;
+
+import java.io.File;
+import java.io.IOException;
+import javax.swing.JFileChooser;
+import javax.swing.JTabbedPane;
 
 public class MainFram extends javax.swing.JFrame {
 
     int i =1 ;
+    Files_management fmanager;
+    private String gsnpath;
+//    Files_management fileManager;
     public MainFram() {
         initComponents();
-        
+        fmanager=new Files_management(this);
         this.setLocationRelativeTo(null);
 //        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-            setSize(1000, 700);
+            setSize(1000, 800);
         this.setVisible(true);
     }
+
+    public JTabbedPane getjTabbedPane2() {
+        return jTabbedPane2;
+    }
+
+    public int getI() {
+        return i;
+    }
+
+    public Files_management getFmanager() {
+        return fmanager;
+    }
+    
+
+    public void setI(int i) {
+        this.i = i;
+    }
+    
+    
 
     
     
@@ -26,9 +60,10 @@ public class MainFram extends javax.swing.JFrame {
     
     
     
-    public void createNewGSN(String name, String path)
+    public void createNewGSN(String name, String path) throws IOException
     {
-        GSN gsn = new GSN(name, path);
+        GSN gsn=fmanager.createNewGSN(name,path);
+        fmanager.SaveAsXml(gsn);
         GsnPannel g = new GsnPannel(this, gsn);
         jTabbedPane2.addTab("GSN: "+ gsn.getName(), g);
         this.jTabbedPane2.setIconAt(this.jTabbedPane2.getTabCount()-1, new javax.swing.ImageIcon(getClass().getResource("/Ressources/GsnDiagram.png")));
@@ -42,7 +77,49 @@ public class MainFram extends javax.swing.JFrame {
     }
     
     
+    private void importGsn() {
+//        this.fileChooser();
+
+
+//        Files_management fmanager=new Files_management();
+//         GSN gsn = fmanager.desiarilize(gsnpath);
+//         GsnPannel g = new GsnPannel(this, gsn);
+//         jTabbedPane2.addTab("GSN: "+ gsn.getName(), g);
+//         this.jTabbedPane2.setIconAt(this.jTabbedPane2.getTabCount()-1, new javax.swing.ImageIcon(getClass().getResource("/Ressources/GsnDiagram.png")));
+//        i++;
+        
+        
+        
+//       Unmarshaller unmarshaller;
+//            try {
+//                System.out.println("1///////////////////////////////////////////");
+//                 JAXBContext jaxbContext = JAXBContext.newInstance(GSN.class, Goal.class, Strategy.class, Solution.class);
+//                 System.out.println("2///////////////////////////////////////////");
+//                  unmarshaller = jaxbContext.createUnmarshaller();
+//                  System.out.println("3///////////////////////////////////////////");
+//                 GSN gsn = (GSN) unmarshaller.unmarshal(new File("file.xml"));
+//                 System.out.println("4///////////////////////////////////////////");
+//                 System.out.println(gsn.getName()+"///////////////////////////////////////////");
+//                         GsnPannel g = new GsnPannel(this, gsn);
+//                       jTabbedPane2.addTab("GSN: "+ gsn.getName(), g);
+//                        this.jTabbedPane2.setIconAt(this.jTabbedPane2.getTabCount()-1, new javax.swing.ImageIcon(getClass().getResource("/Ressources/GsnDiagram.png")));
+//        i++;
+//             } catch (JAXBException e) {
+//                 e.printStackTrace();
+//                 System.out.println("this is exception");
+//             }
+    }
     
+//    public void fileChooser()
+//    {
+//        JFileChooser fileChooser = new JFileChooser(); // create a file chooser
+//        int result = fileChooser.showOpenDialog(null); // show the dialog and get the result
+//        if (result == JFileChooser.APPROVE_OPTION) { // if the user selected a file
+//           File selectedFile = fileChooser.getSelectedFile(); // get the selected file
+//           this.gsnpath=selectedFile.getAbsolutePath();
+//        } 
+//        
+//    }
     
     
     
@@ -58,6 +135,7 @@ public class MainFram extends javax.swing.JFrame {
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jToolBar1 = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jToolBar2 = new javax.swing.JToolBar();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JToolBar.Separator();
@@ -78,6 +156,21 @@ public class MainFram extends javax.swing.JFrame {
             }
         });
         jToolBar1.add(jButton1);
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/Create.png"))); // NOI18N
+        jButton2.setText("Import GSN ");
+        jButton2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jButton2.setFocusable(false);
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jButton2.setMaximumSize(new java.awt.Dimension(106, 28));
+        jButton2.setMinimumSize(new java.awt.Dimension(106, 28));
+        jButton2.setPreferredSize(new java.awt.Dimension(106, 28));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton2);
 
         jToolBar2.setBackground(new java.awt.Color(0, 0, 153));
         jToolBar2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -111,6 +204,12 @@ public class MainFram extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.createNewGSN();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+//        this.importGsn();
+    fmanager.importGSN();
+
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -152,10 +251,13 @@ public class MainFram extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar2;
     // End of variables declaration//GEN-END:variables
+
+ 
 }

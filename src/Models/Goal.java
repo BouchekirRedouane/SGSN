@@ -30,28 +30,7 @@ public class Goal extends Element {
     }
 
 
-//    protected void paintComponent(Graphics g) {
-//      
-//        
-//        g.setColor(Color.RED);
-//        g.setFont(new Font("Arial", Font.BOLD, 20));
-//        
-//        // Get the width and height of the text
-//        int textWidth = g.getFontMetrics().stringWidth(descreption);
-//        int textHeight = g.getFontMetrics().getHeight();
-//        
-//        // Calculate the position and size of the rectangle
-//        int rectX = (140 - textWidth) / 2 - 10; // Subtracting 10 to give some padding
-//        int rectY = (150 - textHeight) / 2 - 10;
-//        int rectWidth = textWidth + 20;
-//        int rectHeight = textHeight + 20;
-//        
-//        // Draw the rectangle
-//        g.drawRect(rectX, rectY, rectWidth, rectHeight);
-//        
-//        // Draw the text
-//        g.drawString(descreption, rectX + 10, rectY + textHeight);
-//    }
+
     
     public String getcontent() {
         String content = ID + "\n\n" + descreption;
@@ -67,25 +46,44 @@ public class Goal extends Element {
                g.setFont(new Font("Arial", Font.BOLD, 16));
                  int textWidth=1 ;
                  int lineWidth;
-                  int textHeight = g.getFontMetrics().getHeight();
-
-                g.setColor(Color.BLACK);
+                 int textHeight = g.getFontMetrics().getHeight();
+                 if(this.Hover){
+                     g.setColor(Color.RED);
+                 }else{
+                 g.setColor(Color.BLACK);
+                 }
                 for (String line : content.split("\n")) {
-                    
-                g.drawString(line, X+ 10, Y+ textHeight);
                     textHeight += g.getFontMetrics().getHeight();
                     lineWidth = g.getFontMetrics().stringWidth(line);
                     if(textWidth<lineWidth){
                         textWidth=lineWidth;
                     }
                 }
-                  g.drawRect(X, Y,textWidth+15,textHeight-10);
+                
+                
+                
+                int Xc=X-textWidth/2;
+                int Yc=Y-textHeight/2;
+                Color goalcolor = new Color(218, 232, 252);
+                g.setColor(goalcolor);
+                 g.fillRect(Xc, Yc,textWidth+15,textHeight-10);
+                 g.setColor(Color.BLACK);
+                textHeight = g.getFontMetrics().getHeight();
+                
+                for (String line : content.split("\n")) {
+                    
+                	g.drawString(line, Xc+ 10, Yc+ textHeight);
+                    textHeight += g.getFontMetrics().getHeight();
+                }
+                  g.drawRect(Xc, Yc,textWidth+15,textHeight-10);
                   
                  
                     
                     width=textWidth;
                     height=textHeight;
     }
+
+   
     
     
 

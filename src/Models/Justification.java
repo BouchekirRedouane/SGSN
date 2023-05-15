@@ -7,7 +7,6 @@ package Models;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 
 /**
@@ -68,7 +67,11 @@ public class Justification extends Element{
             int textWidth=1 ;
             int lineWidth;
             int textHeight = g.getFontMetrics().getHeight();
-            g.setColor(Color.BLACK);
+            if(this.Hover){
+                     g.setColor(Color.RED);
+                 }else{
+                 g.setColor(Color.BLACK);
+                 }
             
             
             for (String line : content.split("\n")) {
@@ -85,7 +88,13 @@ public class Justification extends Element{
                  int buttonxc = X-textWidth/2;
                  int buttonyc = Y-textHeight/2;
                  int buttonysurround=(int) (Y-textHeight*sqrt(2)/2);
-                    
+                 
+                 g.setColor(Color.WHITE);
+                  g.fillRoundRect(buttonxc, buttonysurround, textWidth+textHeight, (int) (textHeight*sqrt(2)), textWidth+textHeight, textHeight*2);
+                 g.setColor(Color.BLACK);
+                  g.drawRoundRect(buttonxc, buttonysurround, textWidth+textHeight, (int) (textHeight*sqrt(2)), textWidth+textHeight, textHeight*2);
+
+                  
                     textHeight = g.getFontMetrics().getHeight();
                 for (String line : content.split("\n")) {
                   g.drawString(line, buttonxc+th/2, buttonyc+ textHeight);
@@ -93,14 +102,13 @@ public class Justification extends Element{
 
                 
                 }
-                  g.drawRoundRect(buttonxc, buttonysurround, textWidth+textHeight, (int) (textHeight*sqrt(2)), textWidth+textHeight, textHeight*2);
                   
 //                  g.draw3DRect(buttonxc, buttonyc, textWidth+textHeight, textHeight, false);
-                    g.setColor(Color.BLUE);
-                    g.draw3DRect(buttonxc+th/2, buttonyc, textWidth, textHeight, false);
-                    g.setColor(Color.RED);
-
-                    g.draw3DRect(buttonxc, buttonysurround, textWidth+textHeight, (int) (textHeight*sqrt(2)), false);
+//                    g.setColor(Color.BLUE);
+//                    g.draw3DRect(buttonxc+th/2, buttonyc, textWidth, textHeight, false);
+//                    g.setColor(Color.RED);
+//
+//                    g.draw3DRect(buttonxc, buttonysurround, textWidth+textHeight, (int) (textHeight*sqrt(2)), false);
                   
                   width=textWidth;
                   height=textHeight;

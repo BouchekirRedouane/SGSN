@@ -1,19 +1,28 @@
 package Views.Dialogs;
 
+import Controlers.Files_management;
 import Views.MainFram;
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 public class NewGsnInputs extends javax.swing.JDialog {
 
     
     MainFram mFram;
+    Files_management fmanager;
+    String path;
     public NewGsnInputs(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.mFram = (MainFram) parent;
+        this.mFram =   (MainFram) parent;
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+        fmanager=mFram.getFmanager();        
     }
 
     
@@ -25,8 +34,10 @@ public class NewGsnInputs extends javax.swing.JDialog {
         this.jTextField2.setText("");
     }
     
-    public void valider()
+    public void valider() throws IOException
     {
+        
+//        fmanager.createNewGSN();
         String GsnName = this.jTextField1.getText();
         String GsnPath= this.jTextField2.getText();
         Boolean result= this.checkInput(GsnName, GsnPath);
@@ -45,9 +56,10 @@ public class NewGsnInputs extends javax.swing.JDialog {
     
     public boolean checkInput(String GsnName, String GsnPath)
     {
-        if(GsnName.equals("") || GsnPath.equals(""))
+        if(GsnName.equals("") || GsnPath.equals("")|| GsnPath.equals("..."))
         {
             System.out.println("Error name or path empty");
+            JOptionPane.showConfirmDialog(null, "You have to choose a folder", "path is empty", JOptionPane.PLAIN_MESSAGE);
             return false;
         }
         
@@ -56,16 +68,16 @@ public class NewGsnInputs extends javax.swing.JDialog {
     
     
     
-    public void fileChooser()
-    {
-        JFileChooser fileChooser = new JFileChooser(); // create a file chooser
-        int result = fileChooser.showOpenDialog(null); // show the dialog and get the result
-        if (result == JFileChooser.APPROVE_OPTION) { // if the user selected a file
-           File selectedFile = fileChooser.getSelectedFile(); // get the selected file
-           this.jTextField2.setText(selectedFile.getAbsolutePath());
-        } 
-        
-    }
+//    public void fileChooser()
+//    {
+//        JFileChooser fileChooser = new JFileChooser(); // create a file chooser
+//        int result = fileChooser.showOpenDialog(null); // show the dialog and get the result
+//        if (result == JFileChooser.APPROVE_OPTION) { // if the user selected a file
+//           File selectedFile = fileChooser.getSelectedFile(); // get the selected file
+//           this.jTextField2.setText(selectedFile.getAbsolutePath());
+//        } 
+//        
+//    }
     
     
     
@@ -113,11 +125,16 @@ public class NewGsnInputs extends javax.swing.JDialog {
 
         jLabel3.setText("Chemin fichier GSN-XML:");
 
-        jTextField1.setText("Test");
+        jTextField1.setText("Nouveau_GSN");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jTextField2.setEditable(false);
         jTextField2.setBackground(new java.awt.Color(255, 255, 153));
-        jTextField2.setText("Test");
+        jTextField2.setText("...");
 
         jButton1.setText("...");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -215,7 +232,11 @@ public class NewGsnInputs extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        this.valider();
+        try {
+            this.valider();
+        } catch (IOException ex) {
+            Logger.getLogger(NewGsnInputs.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -223,8 +244,13 @@ public class NewGsnInputs extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.fileChooser();
+        path=fmanager.fileChooser(this.jTextField1.getText());
+        this.jTextField2.setText(path);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -257,7 +283,7 @@ public class NewGsnInputs extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                NewGsnInputs dialog = new NewGsnInputs(new javax.swing.JFrame(), true);
+                NewGsnInputs dialog = new NewGsnInputs(new javax.swing.JFrame(),true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
