@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="Controllers/CanvasStates/|Controllers/" kind="src" path="src"/>
+	<classpathentry excluding="CanvasStates/" kind="src" path="src/Controllers"/>
+	<classpathentry kind="src" path="src/Controllers/CanvasStates"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk-20">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Mou nir/Documents/NetBeansProjects/SGSN/lib/angus-activation-2.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Mou nir/Documents/NetBeansProjects/SGSN/lib/jakarta.activation-1.2.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Mou nir/Documents/NetBeansProjects/SGSN/lib/jakarta.activation-api-2.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Mou nir/Documents/NetBeansProjects/SGSN/lib/jakarta.xml.bind-api-2.3.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Mou nir/Documents/NetBeansProjects/SGSN/lib/jakarta.xml.bind-api-4.0.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Mou nir/Documents/NetBeansProjects/SGSN/lib/jaxb-api-2.3.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Mou nir/Documents/NetBeansProjects/SGSN/lib/jaxb-core-4.0.2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Mou nir/Documents/NetBeansProjects/SGSN/lib/jaxb-impl-2.3.8.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>
