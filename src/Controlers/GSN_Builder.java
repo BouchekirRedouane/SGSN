@@ -19,21 +19,18 @@ import javax.swing.JOptionPane;
 
 public class GSN_Builder {
 
-	GSN gsn;
-        GsnPannel pannel;
-        MainFram mainFram;
+                            private GSN gsn;
+                           private GsnPannel pannel;
+                          private  MainFram mainFram;
 
     public GSN_Builder(GSN gsn, GsnPannel pannel, MainFram mainFram) {
         this.gsn = gsn;
         this.pannel = pannel;
         this.mainFram = mainFram;
     }
-   
-
     public GSN_Builder(GSN gsn) {
         this.gsn = gsn;
     }
-    
     public void addElement(int x, int y) {
 //		   NewGoalInputs newGoalInputs = new NewGoalInputs(mainFram, true,pannel);java.awt.Frame parent, boolean modal,GsnPannel pannel
 		   NewGoalInputs newGoalInputs = new NewGoalInputs(mainFram,true, this );
@@ -128,7 +125,6 @@ public class GSN_Builder {
                 
             }
     }
-    
     public void deleteRelation(Relations relation) {
         gsn.deletRelation(relation);
     }
@@ -136,7 +132,6 @@ public class GSN_Builder {
             gsn.deletElement(element);
             
     }
-
     public void modifyElement(Element element,String ID,String Desc) {
         element.setID(ID);
         element.setDescreption(Desc);

@@ -73,11 +73,16 @@ public class Goal extends Element {
                 
                 
                 
-                int Xc=X-textWidth/2;
-                int Yc=Y-textHeight/2;
-                Color goalcolor = new Color(218, 232, 252);
-                g.setColor(goalcolor);
+                int Xc=X-(textWidth+15)/2;
+                int Yc=Y-(textHeight-10)/2;
+                
+                g.setColor(new Color(218, 232, 252));
                  g.fillRect(Xc, Yc,textWidth+15,textHeight-10);
+                 g.setColor(new Color(108, 142, 191));
+                    g.drawRect(Xc, Yc,textWidth+15,textHeight-10);
+                    
+                    width=textWidth+15;
+                    height=textHeight-10;
                  if(this.Hover){
                      g.setColor(Color.RED);
                  }else{
@@ -90,7 +95,7 @@ public class Goal extends Element {
                 	g.drawString(line, Xc+ 10, Yc+ textHeight);
                     textHeight += g.getFontMetrics().getHeight();
                 }
-                  g.drawRect(Xc, Yc,textWidth+15,textHeight-10);
+               
                   textWidth+=15;
                   textHeight-=g.getFontMetrics().getHeight()/2;
                   if (this.unDevelloped){
@@ -101,8 +106,7 @@ public class Goal extends Element {
                   
                  
                     
-                    width=textWidth;
-                    height=textHeight;
+                    
     }
 
    

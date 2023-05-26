@@ -20,21 +20,25 @@ import javax.swing.JButton;
 
 public class GSN_Renderer {
     
-    GSN gsn;
+       private GSN gsn;
+       private GsnPannel pannel;
     
     
+//      private ArrayList<Element> Elementss ;
+//      private ArrayList<Relations> Relations ;
     
-      private ArrayList<Element> Elementss ;
-    private ArrayList<Relations> Relations ;
-    
-    GsnPannel pannel;
+       
+       
+       
+       
        private String buttonTextG = "G1\n\n Goal description goes here";
        private String buttonTextS = "S1\n\n Strategy description goes here";
        private String buttonTextSn = "Sn1\n\n Solution description goes here";
        private String buttonTextC = "C1\n\n Context description goes here";
        private String buttonTextJ = "J1\n\n Justification description goes here";
        private String buttonTextA = "A1\n\n Assumption description goes here";
-        private Goal goal = new Goal();
+       
+//        private Goal goal = new Goal();
         private Strategy strategy = new Strategy();
         private Solution solution = new Solution("Sn22",buttonTextSn);
         private Context context = new Context();
@@ -49,9 +53,6 @@ public class GSN_Renderer {
         
         
     }
-       
-       
-    
 public void renderPreview(Graphics g,int mouseX,int mouseY ,int mousePressX ,int mousePressY ){
      switch (pannel.getAction()) {
                 case "Relation.support" -> {
@@ -64,7 +65,6 @@ public void renderPreview(Graphics g,int mouseX,int mouseY ,int mousePressX ,int
                 }
                 case "Relation.context" -> {
                     if(pannel.getjPanel6().isPress()){
-                        System.out.println("\nPress= true\n");
                         g.setColor(Color.LIGHT_GRAY);
                         contextof.drawArrowLine(g, mousePressX, mousePressY, mouseX, mouseY, 10, 5);
 
@@ -73,7 +73,7 @@ public void renderPreview(Graphics g,int mouseX,int mouseY ,int mousePressX ,int
                 }
                 case "Goal" -> {
 //                    System.out.print("\n Switch case worcked ");
-                    goal.draw(g,mouseX,mouseY,buttonTextG);
+                    new Goal().draw(g,mouseX,mouseY,buttonTextG);
                 }
                 case "Strategy" -> {
                     //                     System.out.print("\n Switch case worcked for strategy ");
@@ -106,14 +106,14 @@ public void renderPreview(Graphics g,int mouseX,int mouseY ,int mousePressX ,int
     
 }
 public void renderComponents(Graphics g){
-    Relations = gsn.getRelations();
+        ArrayList<Relations>  Relations = gsn.getRelations();
 	    if(Relations!=null)    
 	        for (int i = 0; i < Relations.size(); i++) {
 	             Relations relations = Relations.get(i);
 	             relations.draw(g);
 	             
 	        }
-        Elementss = gsn.getElements();
+        ArrayList<Element> Elementss = gsn.getElements();
         if(Elementss!=null) 
         	for (int i = 0; i < Elementss.size(); i++) {
 	             Element element = Elementss.get(i);

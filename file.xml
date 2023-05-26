@@ -1,103 +1,89 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <GSN>
-    <name>Nouveau_GSN</name>
-    <path>C:\Users\Mou nir\Documents\Nouveau_GSN.GSN</path>
+    <name>Nouveau_GSN1</name>
+    <path>C:\Users\Mou nir\Documents\Nouveau_GSN1.GSN</path>
     <Elements>
+        <solution>
+            <id>Sn1</id>
+            <x>732</x>
+            <y>526</y>
+            <height>142</height>
+            <width>142</width>
+            <descreption>Descreption de Solution</descreption>
+            <Link1></Link1>
+            <Link2></Link2>
+        </solution>
+        <Context>
+            <id>C1</id>
+            <x>253</x>
+            <y>398</y>
+            <height>76</height>
+            <width>256</width>
+            <descreption>Descreption de Context</descreption>
+            <th>76</th>
+        </Context>
         <goal>
             <id>G1</id>
-            <x>292</x>
-            <y>133</y>
-            <height>67</height>
-            <width>97</width>
-            <descreption>this is goal</descreption>
-            <Undevelloped>false</Undevelloped>
-        </goal>
-        <goal>
-            <id>G2</id>
-            <x>384</x>
-            <y>365</y>
-            <height>67</height>
-            <width>139</width>
-            <descreption>this is a goal too</descreption>
+            <x>673</x>
+            <y>278</y>
+            <height>66</height>
+            <width>171</width>
+            <descreption>Descreption du Goal</descreption>
             <Undevelloped>false</Undevelloped>
         </goal>
         <strategy>
             <id>S1</id>
-            <x>168</x>
-            <y>244</y>
+            <x>525</x>
+            <y>77</y>
             <height>76</height>
-            <width>124</width>
-            <descreption>this is a strategy</descreption>
+            <width>199</width>
+            <descreption>Descreption de Strategy</descreption>
             <Undevelloped>false</Undevelloped>
         </strategy>
-        <solution>
-            <id>Sn1</id>
-            <x>668</x>
-            <y>276</y>
-            <height>53</height>
-            <width>53</width>
-            <descreption>sdafdsf</descreption>
-            <Link1></Link1>
-            <Link2></Link2>
-        </solution>
-        <goal>
-            <id>G55</id>
-            <x>53</x>
-            <y>485</y>
-            <height>67</height>
-            <width>48</width>
-            <descreption>dsaf</descreption>
-            <Undevelloped>false</Undevelloped>
-        </goal>
-        <goal>
-            <id>G33</id>
-            <x>200</x>
-            <y>384</y>
-            <height>67</height>
-            <width>48</width>
-            <descreption>sdaf</descreption>
-            <Undevelloped>false</Undevelloped>
-        </goal>
-        <goal>
-            <id>G44</id>
-            <x>370</x>
-            <y>512</y>
-            <height>67</height>
-            <width>48</width>
-            <descreption>adsf</descreption>
-            <Undevelloped>false</Undevelloped>
-        </goal>
+        <Assumption>
+            <id>A1</id>
+            <x>902</x>
+            <y>82</y>
+            <height>107</height>
+            <width>296</width>
+            <descreption>Descreption de l'Assumption</descreption>
+            <th>76</th>
+        </Assumption>
+        <Justification>
+            <id>J4646</id>
+            <x>1052</x>
+            <y>287</y>
+            <height>107</height>
+            <width>279</width>
+            <descreption>fdsafsadfasdfasdfasdfasdf</descreption>
+            <th>76</th>
+        </Justification>
     </Elements>
     <relations>
-        <SupportedBy>
-            <source>S1</source>
-            <target>G2</target>
-            <hover>false</hover>
-        </SupportedBy>
-        <SupportedBy>
-            <source>G2</source>
-            <target>Sn1</target>
-            <hover>false</hover>
-        </SupportedBy>
-        <SupportedBy>
-            <source>G55</source>
-            <target>G44</target>
-            <hover>false</hover>
-        </SupportedBy>
-        <SupportedBy>
-            <source>G44</source>
-            <target>G33</target>
-            <hover>false</hover>
-        </SupportedBy>
-        <SupportedBy>
-            <source>G55</source>
-            <target>G33</target>
-            <hover>false</hover>
-        </SupportedBy>
         <SupportedBy>
             <source>G1</source>
             <target>S1</target>
             <hover>false</hover>
         </SupportedBy>
+        <InContextOf>
+            <source>G1</source>
+            <target>C1</target>
+            <hover>false</hover>
+        </InContextOf>
+        <SupportedBy>
+            <source>G1</source>
+            <target>Sn1</target>
+            <hover>false</hover>
+        </SupportedBy>
+        <InContextOf>
+            <source>G1</source>
+            <target>A1</target>
+            <hover>false</hover>
+        </InContextOf>
+        <InContextOf>
+            <source>G1</source>
+            <target>J4646</target>
+            <hover>false</hover>
+        </InContextOf>
     </relations>
 </GSN>

@@ -26,20 +26,12 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Solution extends Element {
     @XmlTransient
     private int finalTW;
-    @XmlTransient
-    private int textHeight;
-    @XmlTransient
-    private int Fontheight;
-   
-
-  
-     
-     
-     
-    
+//    @XmlTransient
+//    private int textHeight;
+//    @XmlTransient
+//    private int Fontheight;
      @XmlElement(name = "Link1")
     private String Link1;
-    
      @XmlElement(name = "Link2")
     private String Link2;
     @Override
@@ -128,14 +120,15 @@ public boolean contains(int x, int y) {
         return false;
     }
 }
-public String getcontent() {
-        String content = ID + "\n\n" + descreption;
-        return content;
-    }
+//public String getcontent() {
+//        String content = ID + "\n\n" + descreption;
+//        return content;
+//    }
 public void draw(Graphics g){
          
         calcule_dimentions(g);
-         draw(g,X,Y,getcontent());
+//         draw(g,X,Y,getcontent());
+         draw(g,X,Y, this.ID + "\n\n" + this.descreption);
      }
 public void calcule_dimentions(Graphics g){
          g.setFont(new Font("Arial", Font.BOLD, 16));
@@ -187,9 +180,9 @@ public void calcule_dimentions(Graphics g){
                    textHeight += Fontheight;
 //                   System.out.println(textHeight+":H///////W:"+finalTW);
                 }
-                 this.textHeight=textHeight;
+//                 this.textHeight=textHeight;
                  this.finalTW=finalTW;
-                 this.Fontheight=Fontheight;
+//                 this.Fontheight=Fontheight;
                  
                  height=(int) (finalTW*sqrt(2));
                  width=height;
@@ -200,7 +193,7 @@ public  void draw(Graphics g,int X ,int Y,String content) {
                 double mou3amil = sqrt(2);
                 String id="";
                 int firstline=1;
-                
+                   int Fontheight = g.getFontMetrics().getHeight();
                 if(finalTW<70)
                     finalTW=70;
                 
@@ -234,7 +227,7 @@ public  void draw(Graphics g,int X ,int Y,String content) {
                 
              
                 
-                textHeight = Fontheight;
+                int textHeight = Fontheight;
                 
                  int buttonYf=(int) (Y-finalTW/2+Fontheight);
                 int  buttonXf=(int)(X-finalTW/2);
@@ -272,7 +265,7 @@ public  void draw(Graphics g,int X ,int Y,String content) {
                 int halfWdthPoint=buttonX+ (int) (finalTW*mou3amil)/2- g.getFontMetrics().stringWidth(id)/2;
                  
                 g.drawString(id, halfWdthPoint,buttonY+Fontheight );
-                
+                g.setColor(new Color(184, 84, 80));
                 g.drawOval(buttonX, buttonY, (int) (finalTW*mou3amil),(int) (finalTW*mou3amil));
                 g.setColor(Color.RED);
 //                g.drawOval(X-5, Y+ (int) (finalTW*mou3amil/2), 10,10);
@@ -283,17 +276,24 @@ public  void draw(Graphics g,int X ,int Y,String content) {
                    g.setFont(new Font("Arial", Font.BOLD, 14));
                     g.drawLine(X+25, Yattachement-5, X+(g.getFontMetrics().stringWidth("Attachement1")+20)/2,Yattachement+30);
 //                    g.drawLine(X+25, Yattachement-5,X+25,Yattachement+30);
+                    g.setColor(Color.WHITE);
+                    g.fillRect(X+10, Yattachement+30, g.getFontMetrics().stringWidth("Attachement1")+10, g.getFontMetrics().getHeight()*2);
+                                        g.setColor(Color.BLACK);
+
                     g.drawRect(X+10, Yattachement+30, g.getFontMetrics().stringWidth("Attachement1")+10, g.getFontMetrics().getHeight()*2);
                     g.drawString("Attachement1", X+15, Yattachement+30+g.getFontMetrics().getHeight());
              
                 }                               
                     if( Link2 != null && !Link2.equals("")   ){
                     g.drawLine(X-20 , Yattachement-5,X-(g.getFontMetrics().stringWidth("Attachement1")+20)/2,Yattachement+30);
+                                        g.setColor(Color.WHITE);
+                    g.fillRect(X-15-g.getFontMetrics().stringWidth("Attachement2"), Yattachement+30, g.getFontMetrics().stringWidth("Attachement2")+10, g.getFontMetrics().getHeight()*2);
+                                        g.setColor(Color.BLACK);
                     g.drawRect(X-15-g.getFontMetrics().stringWidth("Attachement2"), Yattachement+30, g.getFontMetrics().stringWidth("Attachement2")+10, g.getFontMetrics().getHeight()*2);
 //                     g.drawRect(X-20, Yattachement+30, -(g.getFontMetrics().stringWidth("Attachement2")+10), g.getFontMetrics().getHeight()*2);
                     g.drawString("Attachement2", X-15-g.getFontMetrics().stringWidth("Attachement2")+5, Yattachement+30+g.getFontMetrics().getHeight());
 //                    g.drawString("Attachement1", X+20, Yattachement+=g.getFontMetrics().getHeight());
-                   
+
 
 //                    g.drawRect(X+20, Yattachement, width, height);
                     
@@ -312,7 +312,8 @@ public  void draw(Graphics g,int X ,int Y,String content) {
                  
                 
                 
-                  
+                                                         g.fillOval(X, Y, 10, 10);
+
                     }
     } 
 public static void openAttachment(String attachment) throws URISyntaxException {

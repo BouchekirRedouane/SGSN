@@ -2,17 +2,13 @@ package Views;
 
 import Views.Dialogs.NewGsnInputs;
 import Models.GSN;
-import java.io.File;
-import java.io.FileNotFoundException;
-import javax.swing.JFrame;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
+
 
 import Controlers.Files_management;
 
 import java.io.File;
 import java.io.IOException;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JTabbedPane;
 
@@ -20,7 +16,7 @@ public class MainFram extends javax.swing.JFrame {
 
     int i =1 ;
     Files_management fmanager;
-    private String gsnpath;
+    
 //    Files_management fileManager;
     public MainFram() {
         initComponents();
@@ -66,7 +62,8 @@ public class MainFram extends javax.swing.JFrame {
         fmanager.SaveAsXml(gsn);
         GsnPannel g = new GsnPannel(this, gsn);
         jTabbedPane2.addTab("GSN: "+ gsn.getName(), g);
-        this.jTabbedPane2.setIconAt(this.jTabbedPane2.getTabCount()-1, new javax.swing.ImageIcon(getClass().getResource("/Ressources/GsnDiagram.png")));
+        this.jTabbedPane2.setIconAt(this.jTabbedPane2.getTabCount()-1, new javax.swing.ImageIcon(getClass().getResource("/Ressources/24diagram.png")));
+//        this.jTabbedPane2.setIconAt(this.jTabbedPane2.getTabCount()-1, new javax.swing.ImageIcon(getClass().getResource("1diagram.png")));
        i++;
     }
     
@@ -77,7 +74,7 @@ public class MainFram extends javax.swing.JFrame {
     }
     
     
-    private void importGsn() {
+//    private void importGsn() {
 //        this.fileChooser();
 
 
@@ -108,7 +105,7 @@ public class MainFram extends javax.swing.JFrame {
 //                 e.printStackTrace();
 //                 System.out.println("this is exception");
 //             }
-    }
+//    }
     
 //    public void fileChooser()
 //    {
@@ -142,12 +139,23 @@ public class MainFram extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("USTHB-FI-GSN Tool");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
+
+        jTabbedPane2.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
 
         jToolBar1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jToolBar1.setFloatable(false);
+        jToolBar1.setAlignmentX(0.0F);
+        jToolBar1.setMargin(new java.awt.Insets(10, 10, 10, 10));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/Create.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/..floppy-disk-circle-arrow-right (2).png"))); // NOI18N
         jButton1.setText("Nouveau GSN");
         jButton1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jButton1.setBorderPainted(false);
         jButton1.setFocusable(false);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -157,9 +165,11 @@ public class MainFram extends javax.swing.JFrame {
         });
         jToolBar1.add(jButton1);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/Create.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/..floppy-disk-circle-arrow-right (5).png"))); // NOI18N
         jButton2.setText("Import GSN ");
         jButton2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jButton2.setBorderPainted(false);
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.setFocusable(false);
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jButton2.setMaximumSize(new java.awt.Dimension(106, 28));
@@ -172,8 +182,9 @@ public class MainFram extends javax.swing.JFrame {
         });
         jToolBar1.add(jButton2);
 
-        jToolBar2.setBackground(new java.awt.Color(0, 0, 153));
+        jToolBar2.setBackground(new java.awt.Color(0, 40, 81));
         jToolBar2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jToolBar2.setFloatable(false);
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("    USTHB-FI-GSN Tool");
@@ -191,11 +202,11 @@ public class MainFram extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -210,6 +221,11 @@ public class MainFram extends javax.swing.JFrame {
     fmanager.importGSN();
 
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+                ImageIcon icon = new ImageIcon("C:\\Users\\Mou nir\\Documents\\NetBeansProjects\\SGSN\\src\\Ressources\\Component2.png");
+                 setIconImage(icon.getImage());
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
@@ -244,6 +260,7 @@ public class MainFram extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                
                 new MainFram().setVisible(true);
             }
         });

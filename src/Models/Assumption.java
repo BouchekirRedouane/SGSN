@@ -86,16 +86,18 @@ public class Assumption extends Element {
                      th =textHeight;
                      
                 }
+            width=textWidth+textHeight;
+             height=(int) (textHeight*sqrt(2));
                 
-                 int buttonxc = X-textWidth/2;
+                 int buttonxc = X-(textWidth+textHeight)/2;
                  int buttonyc = Y-textHeight/2;
                  int buttonysurround=(int) (Y-textHeight*sqrt(2)/2);
                     
-                 g.setColor(Color.WHITE);
+                 g.setColor(new Color(255, 242, 204));
                  g.fillRoundRect(buttonxc, buttonysurround, textWidth+textHeight, (int) (textHeight*sqrt(2)), textWidth+textHeight, textHeight*2);
-                 g.setColor(Color.BLACK);
+                 g.setColor(new Color(214, 182, 86));
                  g.drawRoundRect(buttonxc, buttonysurround, textWidth+textHeight, (int) (textHeight*sqrt(2)), textWidth+textHeight, textHeight*2);
-
+                    g.setColor(Color.BLACK);
                  
                     textHeight = g.getFontMetrics().getHeight();
                 for (String line : content.split("\n")) {
@@ -112,11 +114,10 @@ public class Assumption extends Element {
 //
 //                    g.draw3DRect(buttonxc, buttonysurround, textWidth+textHeight, (int) (textHeight*sqrt(2)), false);
                   
-                  width=textWidth;
-                  height=textHeight;
+                  
                   
                  
-                
+               
                 
                   
 

@@ -83,14 +83,19 @@ public class Context extends Element {
                     }
                     
                      th =textHeight;
+                     width=textWidth+textHeight;
+                     height=textHeight;
                      
                 }
                 
-                 int buttonxc = X-textWidth/2;
+                 int buttonxc = X-textWidth/2-textHeight/2;
                     int buttonyc = Y-textHeight/2;
-                     g.setColor(Color.WHITE);
+                     g.setColor(new Color(225, 213, 231));
                       g.fillRoundRect(buttonxc, buttonyc, textWidth+textHeight, textHeight, textHeight, textHeight);
-                     g.setColor(Color.BLACK);
+                     g.setColor(new Color(150, 115, 166));
+                     g.drawRoundRect(buttonxc, buttonyc, textWidth+textHeight, textHeight, textHeight, textHeight);
+                    g.setColor( Color.BLACK);
+
                     textHeight = g.getFontMetrics().getHeight();
                 for (String line : content.split("\n")) {
                   g.drawString(line, buttonxc+th/2, buttonyc+ textHeight);
@@ -98,11 +103,9 @@ public class Context extends Element {
 
                 
                 }
-                  g.drawRoundRect(buttonxc, buttonyc, textWidth+textHeight, textHeight, textHeight, textHeight);
-                  
                  
-                  width=textWidth;
-                  height=textHeight;
+                 
+                 
     }
     
     

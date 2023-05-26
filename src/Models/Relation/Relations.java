@@ -24,6 +24,8 @@ public abstract class Relations {
     @XmlIDREF
     Element target;
     
+    int xtarget;
+    int ytarget;
     
     boolean hover;
 
@@ -152,23 +154,61 @@ public abstract class Relations {
 //    return distance <= 10;
 //            
 //    }
-    public boolean contains(int x, int y) {
-        
-    int x1 =this.getSource().getX()-20+( this.getTarget().getX()-this.getSource().getX())/2 ;
-    int y1 = this.getSource().getY()-20+(this.getTarget().getY()-this.getSource().getY())/2;
-    int x2 =x1+20;
-    int y2 =y1+20;
+//    public boolean contains(int x, int y) {
+//        
+//    int x1 =xtarget ;
+//    int y1 =ytarget;
+//    int x2 =x1+20;
+//    int y2 =y1+20;
+//    
+//    
+//   if (x >= x1 && x <= x2 && y >= y1 && y <= y2) {
+//       
+//        this.hover=true;
+//        return true;
+//        
+//    } else {
+//        this.hover=false;
+//        return false;
+//    }
+//            
+//    }
+    public  boolean contains(int x, int y) {
+
+        int x1=source.getX();
+        int y1=source.getY();
+        int x2=xtarget;
+        int y2=ytarget;
+
     
-    
-   if (x >= x1 && x <= x2 && y >= y1 && y <= y2) {
-       
+    // Calculate the squared length of the arrow
+    int arrowLengthSquared = (x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1);
+
+    // Calculate the squared distance from the point to the start of the arrow
+    int distanceToStartSquared = (x - x1) * (x - x1) + (y - y1) * (y - y1);
+
+    // Calculate the squared distance from the point to the end of the arrow
+    int distanceToEndSquared = (x - x2) * (x - x2) + (y - y2) * (y - y2);
+
+    // Calculate the squared distance from the point to the line formed by the arrow
+    int dx = x2 - x1;
+    int dy = y2 - y1;
+    int crossProduct = (x - x1) * dy - (y - y1) * dx;
+    int distanceToLineSquared = crossProduct * crossProduct / arrowLengthSquared;
+
+    // Calculate the squared padding distance
+    int paddingSquared = 10 * 10;
+
+    // Check if the point is within the arrow with padding
+    if(distanceToLineSquared <= paddingSquared && distanceToStartSquared <= arrowLengthSquared + paddingSquared
+            && distanceToEndSquared <= arrowLengthSquared + paddingSquared){
+        this.hover=true;
         return true;
-        
-    } else {
+    }else{
+        this.hover=false;
         return false;
     }
-            
-    }
+}
     
     
     public void draw(Graphics g) {}

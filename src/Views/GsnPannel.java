@@ -7,6 +7,8 @@ import Models.Element;
 import Models.GSN;
 import Models.Relation.Relations;
 import Views.Dialogs.NewGoalInputs;
+
+import java.awt.Color;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -273,24 +275,28 @@ public class GsnPannel extends javax.swing.JPanel {
         Context_Btn = new javax.swing.JToggleButton();
         Justification_btn = new javax.swing.JToggleButton();
         Assumption_Btn = new javax.swing.JToggleButton();
-        jPanel7 = new javax.swing.JPanel();
-        jPanel8 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        SupportedBy_Btn = new javax.swing.JToggleButton();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
         InContextOf_Btn = new javax.swing.JToggleButton();
+        SupportedBy_Btn = new javax.swing.JToggleButton();
         jToolBar2 = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
+        jSeparator3 = new javax.swing.JToolBar.Separator();
         SaveXml_Btn = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JToolBar.Separator();
         Analyse_syntax = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JToolBar.Separator();
         jButton4 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
 
-        jToolBar1.setBackground(new java.awt.Color(204, 204, 204));
+        jToolBar1.setBackground(new java.awt.Color(215, 215, 215));
         jToolBar1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jToolBar1.setFloatable(false);
 
         jLabel1.setText("GSN:   ");
         jToolBar1.add(jLabel1);
@@ -313,12 +319,14 @@ public class GsnPannel extends javax.swing.JPanel {
         jLabel6.setText("None");
         jToolBar1.add(jLabel6);
 
-        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel2.setBackground(new java.awt.Color(218, 218, 218));
+        jPanel2.setForeground(new java.awt.Color(144, 166, 185));
+        jPanel2.setFocusable(false);
 
-        jPanel3.setBackground(new java.awt.Color(0, 0, 204));
+        jPanel3.setBackground(new java.awt.Color(140, 170, 197));
 
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Éléments du GSN");
 
@@ -326,58 +334,142 @@ public class GsnPannel extends javax.swing.JPanel {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
         );
 
-        Goal_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/GoalIcon.png"))); // NOI18N
-        Goal_Btn.setText("Goal     ");
+        Goal_Btn.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        Goal_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/Goal.png"))); // NOI18N
+        Goal_Btn.setText("Goal");
+        Goal_Btn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Goal_Btn.setIconTextGap(10);
+        Goal_Btn.setMaximumSize(new java.awt.Dimension(201, 57));
+        Goal_Btn.setMinimumSize(new java.awt.Dimension(201, 57));
+        Goal_Btn.setPreferredSize(new java.awt.Dimension(201, 57));
+        Goal_Btn.setRolloverEnabled(false);
         Goal_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Goal_BtnActionPerformed(evt);
             }
         });
 
-        Strategy_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/GoalIcon.png"))); // NOI18N
+        Strategy_Btn.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        Strategy_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/Strategy.png"))); // NOI18N
         Strategy_Btn.setText("Strategy");
+        Strategy_Btn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Strategy_Btn.setIconTextGap(10);
+        Strategy_Btn.setMaximumSize(new java.awt.Dimension(201, 57));
+        Strategy_Btn.setMinimumSize(new java.awt.Dimension(201, 57));
+        Strategy_Btn.setPreferredSize(new java.awt.Dimension(201, 57));
         Strategy_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Strategy_BtnActionPerformed(evt);
             }
         });
 
-        Solution_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/GoalIcon.png"))); // NOI18N
+        Solution_Btn.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        Solution_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/Solution.png"))); // NOI18N
         Solution_Btn.setText("Solution");
+        Solution_Btn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Solution_Btn.setIconTextGap(10);
+        Solution_Btn.setMaximumSize(new java.awt.Dimension(201, 57));
+        Solution_Btn.setMinimumSize(new java.awt.Dimension(201, 57));
+        Solution_Btn.setPreferredSize(new java.awt.Dimension(201, 57));
         Solution_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Solution_BtnActionPerformed(evt);
             }
         });
 
-        Context_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/GoalIcon.png"))); // NOI18N
+        Context_Btn.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        Context_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/Context.png"))); // NOI18N
         Context_Btn.setText("Context");
+        Context_Btn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Context_Btn.setIconTextGap(10);
+        Context_Btn.setMaximumSize(new java.awt.Dimension(201, 57));
+        Context_Btn.setMinimumSize(new java.awt.Dimension(201, 57));
+        Context_Btn.setPreferredSize(new java.awt.Dimension(201, 57));
         Context_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Context_BtnActionPerformed(evt);
             }
         });
 
-        Justification_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/GoalIcon.png"))); // NOI18N
+        Justification_btn.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        Justification_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/Justification.png"))); // NOI18N
         Justification_btn.setText("Justification");
+        Justification_btn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Justification_btn.setIconTextGap(7);
+        Justification_btn.setMaximumSize(new java.awt.Dimension(201, 57));
+        Justification_btn.setMinimumSize(new java.awt.Dimension(201, 57));
+        Justification_btn.setPreferredSize(new java.awt.Dimension(201, 57));
         Justification_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Justification_btnActionPerformed(evt);
             }
         });
 
-        Assumption_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/GoalIcon.png"))); // NOI18N
+        Assumption_Btn.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        Assumption_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/Assumption.png"))); // NOI18N
         Assumption_Btn.setText("Assumption");
+        Assumption_Btn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Assumption_Btn.setIconTextGap(7);
+        Assumption_Btn.setMaximumSize(new java.awt.Dimension(201, 57));
+        Assumption_Btn.setMinimumSize(new java.awt.Dimension(201, 57));
+        Assumption_Btn.setPreferredSize(new java.awt.Dimension(201, 57));
         Assumption_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Assumption_BtnActionPerformed(evt);
+            }
+        });
+
+        jPanel9.setBackground(new java.awt.Color(140, 170, 197));
+        jPanel9.setPreferredSize(new java.awt.Dimension(103, 36));
+
+        jLabel9.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Relations du GSN");
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        InContextOf_Btn.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        InContextOf_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/Sprtby.png"))); // NOI18N
+        InContextOf_Btn.setText("InContextOf");
+        InContextOf_Btn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        InContextOf_Btn.setMaximumSize(new java.awt.Dimension(197, 57));
+        InContextOf_Btn.setMinimumSize(new java.awt.Dimension(197, 57));
+        InContextOf_Btn.setPreferredSize(new java.awt.Dimension(197, 57));
+        InContextOf_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InContextOf_BtnActionPerformed(evt);
+            }
+        });
+
+        SupportedBy_Btn.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        SupportedBy_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/cntxt.png"))); // NOI18N
+        SupportedBy_Btn.setText("SupportedBy");
+        SupportedBy_Btn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        SupportedBy_Btn.setMaximumSize(new java.awt.Dimension(149, 57));
+        SupportedBy_Btn.setMinimumSize(new java.awt.Dimension(149, 57));
+        SupportedBy_Btn.setPreferredSize(new java.awt.Dimension(149, 57));
+        SupportedBy_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SupportedBy_BtnActionPerformed(evt);
             }
         });
 
@@ -386,120 +478,79 @@ public class GsnPannel extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Goal_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Strategy_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Solution_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Context_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Justification_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Assumption_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(Goal_Btn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(Strategy_Btn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(Solution_Btn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(Context_Btn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(Assumption_Btn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(Justification_btn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+            .addComponent(SupportedBy_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(InContextOf_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Goal_Btn)
+                .addComponent(Goal_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Strategy_Btn)
+                .addComponent(Strategy_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Solution_Btn)
+                .addComponent(Context_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Context_Btn)
+                .addComponent(Assumption_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Assumption_Btn)
+                .addComponent(Justification_btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Justification_btn))
-        );
-
-        jPanel7.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jPanel8.setBackground(new java.awt.Color(0, 0, 204));
-
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Relations du GSN");
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-        );
-
-        SupportedBy_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/GoalIcon.png"))); // NOI18N
-        SupportedBy_Btn.setText("SupportedBy");
-        SupportedBy_Btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SupportedBy_BtnActionPerformed(evt);
-            }
-        });
-
-        InContextOf_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/GoalIcon.png"))); // NOI18N
-        InContextOf_Btn.setText("InContextOf");
-        InContextOf_Btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InContextOf_BtnActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(SupportedBy_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(InContextOf_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Solution_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(SupportedBy_Btn)
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(InContextOf_Btn)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(InContextOf_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(SupportedBy_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jToolBar2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/Export.png"))); // NOI18N
-        jButton1.setText("Exporter comme image");
-        jButton1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/16file-download.png"))); // NOI18N
+        jButton1.setText("Exporter comme image  ");
+        jButton1.setBorder(null);
         jButton1.setFocusable(false);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jButton1.setIconTextGap(2);
+        jButton1.setMaximumSize(new java.awt.Dimension(152, 21));
+        jButton1.setMinimumSize(new java.awt.Dimension(152, 21));
+        jButton1.setPreferredSize(new java.awt.Dimension(149, 21));
         jToolBar2.add(jButton1);
+        jToolBar2.add(jSeparator3);
 
-        SaveXml_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/Save.png"))); // NOI18N
-        SaveXml_Btn.setText("Enregistrer XML");
+        SaveXml_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/16file-export.png"))); // NOI18N
+        SaveXml_Btn.setText("Enregistrer XML  ");
         SaveXml_Btn.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        SaveXml_Btn.setBorderPainted(false);
         SaveXml_Btn.setFocusable(false);
         SaveXml_Btn.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        SaveXml_Btn.setIconTextGap(2);
+        SaveXml_Btn.setMargin(new java.awt.Insets(2, 20, 3, 14));
         SaveXml_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SaveXml_BtnActionPerformed(evt);
             }
         });
         jToolBar2.add(SaveXml_Btn);
+        jToolBar2.add(jSeparator2);
 
-        Analyse_syntax.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/Verify.png"))); // NOI18N
-        Analyse_syntax.setText("Analyse syntaxique");
+        Analyse_syntax.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/16check-circle.png"))); // NOI18N
+        Analyse_syntax.setText("Analyse syntaxique  ");
         Analyse_syntax.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        Analyse_syntax.setBorderPainted(false);
+        Analyse_syntax.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Analyse_syntax.setFocusable(false);
         Analyse_syntax.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        Analyse_syntax.setIconTextGap(2);
         Analyse_syntax.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Analyse_syntaxActionPerformed(evt);
@@ -507,11 +558,16 @@ public class GsnPannel extends javax.swing.JPanel {
         });
         jToolBar2.add(Analyse_syntax);
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/Verify.png"))); // NOI18N
-        jButton4.setText("Analyse sémantique ");
+        jSeparator1.setForeground(new java.awt.Color(240, 240, 240));
+        jToolBar2.add(jSeparator1);
+
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Ressources/16assept-document.png"))); // NOI18N
+        jButton4.setText("Analyse sémantique  ");
         jButton4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jButton4.setBorderPainted(false);
         jButton4.setFocusable(false);
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jButton4.setIconTextGap(2);
         jToolBar2.add(jButton4);
 
         jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -548,25 +604,29 @@ public class GsnPannel extends javax.swing.JPanel {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1280, Short.MAX_VALUE)
+            .addGap(0, 3996, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 527, Short.MAX_VALUE)
+            .addGap(0, 3996, Short.MAX_VALUE)
         );
+
+        jScrollPane2.setViewportView(jPanel6);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 1284, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1259, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("GSN Viewer", new javax.swing.ImageIcon(getClass().getResource("/Ressources/GSN.png")), jPanel4); // NOI18N
+        jTabbedPane1.addTab("GSN Viewer", new javax.swing.ImageIcon(getClass().getResource("/Ressources/16draw-square.png")), jPanel4); // NOI18N
 
         jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -582,14 +642,14 @@ public class GsnPannel extends javax.swing.JPanel {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1284, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1271, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("GSN-XML", new javax.swing.ImageIcon(getClass().getResource("/Ressources/XML.png")), jPanel5); // NOI18N
+        jTabbedPane1.addTab("GSN-XML", new javax.swing.ImageIcon(getClass().getResource("/Ressources/16xmll.png")), jPanel5); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -597,9 +657,7 @@ public class GsnPannel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane1))
             .addComponent(jToolBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -611,11 +669,8 @@ public class GsnPannel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -821,14 +876,17 @@ public class GsnPannel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JToolBar.Separator jSeparator1;
+    private javax.swing.JToolBar.Separator jSeparator2;
+    private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JToolBar jToolBar1;

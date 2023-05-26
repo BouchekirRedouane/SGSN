@@ -77,7 +77,7 @@ public  class GSN {
         for (int i = 0; i < Elements.size(); i++) {
             if (Elements.get(i) != null && Elements.get(i).equals(item)) {
                 for (int j = 0; j < Relations.size(); j++) {
-                 if (Relations.get(j) != null && (Relations.get(j).getSource().equals(item)||Relations.get(j).getSource().equals(item))) {
+                 if (Relations.get(j) != null && (Relations.get(j).getSource().equals(item) || Relations.get(j).getTarget().equals(item))) {
                             Relations.remove(j);
 
                         }

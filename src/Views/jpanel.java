@@ -7,14 +7,11 @@ package Views;
 import Controlers.GSN_Builder;
 import Controlers.GSN_Renderer;
 import Models.*;
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import Models.GSN;
-import Models.Goal;
 import Models.Relation.Relations;
 import Models.Solution;
-import Models.Strategy;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -64,13 +61,13 @@ public class jpanel extends javax.swing.JPanel {
     
 
   
-    
-      private String buttonTextG = "G1\n\n Goal description goes here";
-       private String buttonTextS = "S1\n\n Strategy description goes here";
-       private String buttonTextSn = "Sn1\n\n Solution description goes here";
-       private String buttonTextC = "C1\n\n Context description goes here";
-       private String buttonTextJ = "J1\n\n Justification description goes here";
-       private String buttonTextA = "A1\n\n Assumption description goes here";
+//    
+//      private String buttonTextG = "G1\n\n Goal description goes here";
+//       private String buttonTextS = "S1\n\n Strategy description goes here";
+//       private String buttonTextSn = "Sn1\n\n Solution description goes here";
+//       private String buttonTextC = "C1\n\n Context description goes here";
+//       private String buttonTextJ = "J1\n\n Justification description goes here";
+//       private String buttonTextA = "A1\n\n Assumption description goes here";
 
     public boolean isPress() {
         return press;
@@ -170,12 +167,9 @@ public class jpanel extends javax.swing.JPanel {
             }
               for (Relations Rel : Relations) {
              
-            if (Rel.contains(evt.getX(), evt.getY())) {
-                Rel.setHover(true);
-            }else{
-                Rel.setHover(false);
-            }
-            }
+            Rel.contains(evt.getX(), evt.getY());
+              }
+           
         mouseX = evt.getX();
         mouseY = evt.getY();
         repaint();        // TODO add your handling code here:

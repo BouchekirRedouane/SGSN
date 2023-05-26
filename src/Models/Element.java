@@ -98,7 +98,7 @@ public abstract class Element {
         this.Y = Y;
     }
 
-    public double getHeight() {
+    public int getHeight() {
         return height;
     }
 
@@ -106,7 +106,7 @@ public abstract class Element {
         this.height = height;
     }
 
-    public double getWidth() {
+    public int getWidth() {
         return width;
     }
 

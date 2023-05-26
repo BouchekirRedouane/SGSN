@@ -40,11 +40,10 @@ import javax.swing.plaf.basic.BasicFileChooserUI;
  * @author Mou nir
  */
 public class Files_management {
-        private GsnPannel pannel;
+      
         private MainFram mainf;
 	private GSN gsn;
-	String xmlString;
-        String path;
+       
         
 	public Files_management(MainFram mainf) {
 		this.mainf=mainf;
@@ -69,8 +68,10 @@ public class Files_management {
 	            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 	            marshaller.marshal(gsn, sw);
 	            marshaller.marshal(gsn, file);
-	            xmlString = sw.toString();
-                    return xmlString;
+//	            xmlString = sw.toString();
+	            return sw.toString();
+                    
+//                    return xmlString;
 //	            pannel.getjTextPane1().setText("");
 //	            pannel.getjTextPane1().setText(xmlString);
 	         
@@ -109,7 +110,7 @@ public class Files_management {
                  GSN gsn = desiarilize(path);
                  GsnPannel g = new GsnPannel(mainf, gsn);
                  mainf.getjTabbedPane2().addTab("GSN: "+ gsn.getName(), g);
-                 mainf.getjTabbedPane2().setIconAt(mainf.getjTabbedPane2().getTabCount()-1, new javax.swing.ImageIcon(getClass().getResource("/Ressources/GsnDiagram.png")));
+                 mainf.getjTabbedPane2().setIconAt(mainf.getjTabbedPane2().getTabCount()-1, new javax.swing.ImageIcon(getClass().getResource("/Ressources/24diagram.png")));
                  mainf.setI(mainf.getI()+1);
                   int result = JOptionPane.showConfirmDialog(null, "Voulez-vous faire une anlyse Syntaxique au GSN importe?", "Analyse Syntaxique", JOptionPane.YES_NO_OPTION);
 

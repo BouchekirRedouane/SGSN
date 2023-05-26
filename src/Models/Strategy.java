@@ -83,7 +83,7 @@ public class Strategy extends Element{
                     }
                 }
                     
-                     Xc=X-textWidth/2;
+                     Xc=X-(textWidth+diagonal)/2-diagonal/2;
                      Yc=Y-textHeight/2;
                     
                      
@@ -94,19 +94,21 @@ public class Strategy extends Element{
                              g.setColor(color);
                           g.fillPolygon(xPoints,yPoints,4);
                           
-                          g.setColor(Color.BLACK);
+                          g.setColor(new Color(130, 179, 102));
                           
                           g.drawLine(Xc,Yc,Xc+textWidth+diagonal,Yc);  //
                           g.drawLine(Xc+textWidth+diagonal,Yc,Xc+textWidth+diagonal+diagonal, Yc+textHeight);
                           g.drawLine(Xc+textWidth+diagonal+diagonal, Yc+textHeight,Xc+diagonal, Yc+textHeight);
                           g.drawLine(Xc+diagonal, Yc+textHeight,Xc,Yc);
                           
-                        
+                         g.setColor(Color.BLACK);
                           
+                         width=textWidth+diagonal;
+                         height=textHeight;
                      
                     textHeight = g.getFontMetrics().getHeight();
                     
-                
+                    
 //               
                 for (String line : content.split("\n")) {
                         
@@ -126,8 +128,9 @@ public class Strategy extends Element{
                       int[] yPointss={Yc+textHeight,Yc+textHeight+10,Yc+textHeight+20,Yc+textHeight+10};
                       g.fillPolygon(xPointss, yPointss, 4);
                   }
-                    width=textWidth;
-                    height=textHeight;
+                    
+                    
+                    
     }
     
 }
