@@ -58,7 +58,7 @@ public class Goal extends Element {
         
          
                
-               g.setFont(new Font("Arial", Font.BOLD, 16));
+               g.setFont(new Font("Arial", Font.BOLD, 13));
                  int textWidth=1 ;
                  int lineWidth;
                  int textHeight = g.getFontMetrics().getHeight();

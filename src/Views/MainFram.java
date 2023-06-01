@@ -148,7 +148,6 @@ public class MainFram extends javax.swing.JFrame {
         jTabbedPane2.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
 
         jToolBar1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jToolBar1.setFloatable(false);
         jToolBar1.setAlignmentX(0.0F);
         jToolBar1.setMargin(new java.awt.Insets(10, 10, 10, 10));
 
@@ -184,7 +183,7 @@ public class MainFram extends javax.swing.JFrame {
 
         jToolBar2.setBackground(new java.awt.Color(0, 40, 81));
         jToolBar2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jToolBar2.setFloatable(false);
+        jToolBar2.setRollover(true);
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("    USTHB-FI-GSN Tool");

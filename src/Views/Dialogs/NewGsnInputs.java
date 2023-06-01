@@ -59,7 +59,7 @@ public class NewGsnInputs extends javax.swing.JDialog {
         if(GsnName.equals("") || GsnPath.equals("")|| GsnPath.equals("..."))
         {
             System.out.println("Error name or path empty");
-            JOptionPane.showConfirmDialog(null, "You have to choose a folder", "path is empty", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showConfirmDialog(null, "Vous devez choisir un dossier.","Le chemin est vide.", JOptionPane.PLAIN_MESSAGE);
             return false;
         }
         

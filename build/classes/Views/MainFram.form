@@ -59,7 +59,6 @@
             <EmptyBorder/>
           </Border>
         </Property>
-        <Property name="floatable" type="boolean" value="false"/>
         <Property name="alignmentX" type="float" value="0.0"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
           <Insets value="[10, 10, 10, 10]"/>
@@ -130,7 +129,7 @@
             <EmptyBorder/>
           </Border>
         </Property>
-        <Property name="floatable" type="boolean" value="false"/>
+        <Property name="rollover" type="boolean" value="true"/>
       </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>

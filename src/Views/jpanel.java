@@ -39,7 +39,6 @@ public class jpanel extends javax.swing.JPanel {
     private int offsetX;
     private int offsetY;
     private GsnPannel pannel;
-    GSN gsn;
     private ArrayList<Element> Elementss ;
     private ArrayList<Relations> Relations ;
     private  Element selectedObject;
@@ -47,7 +46,7 @@ public class jpanel extends javax.swing.JPanel {
     GSN_Renderer renderer;
 
     public jpanel(GSN gsn,GsnPannel pannel) {
-        this.gsn = gsn;
+       
         this.pannel=pannel;
         builder = new GSN_Builder( gsn,  pannel, pannel.mainFram);
         renderer = new GSN_Renderer(pannel);

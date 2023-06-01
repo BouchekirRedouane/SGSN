@@ -140,7 +140,7 @@ public class Files_management {
                 File file = new File(selectedDirectory, fileName + ".GSN");
 
                 if (file.exists()) {
-                    int result = JOptionPane.showConfirmDialog(null, "The file already exists. Do you want to replace it?", "Replace File", JOptionPane.YES_NO_OPTION);
+                    int result = JOptionPane.showConfirmDialog(null, "Ce fichier existe déjà souhaitez-vous le remplacer ?", "Le fichier existe déjà.", JOptionPane.YES_NO_OPTION);
 
                     if (result == JOptionPane.YES_OPTION) {
                         file.delete();
@@ -184,7 +184,7 @@ public class Files_management {
                 if (selectedFile.exists()) {
                     return selectedFile.getPath();
                 } else {
-                	 JOptionPane.showConfirmDialog(null, "The file you entered does not exist", "File does not exist", JOptionPane.PLAIN_MESSAGE);
+                	 JOptionPane.showConfirmDialog(null, "Le fichier que vous avez choisez n'existe pas." ,"Le fichier n'existe pas.", JOptionPane.PLAIN_MESSAGE);
                 	 
                     return  fileChooser(choice); // File does not exist
                 }
@@ -214,15 +214,13 @@ public class Files_management {
                     String fileName = selectedFile.getName();
 
                     if (fileName.isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "The chosen directory cannot have an empty file name.",
-                                "Invalid File Name", JOptionPane.WARNING_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Le répertoire sélectionné ne peut pas avoir de nom de fichier vide.","Invalid File Name", JOptionPane.WARNING_MESSAGE);
                         return null;
                     }
 
                     if (selectedFile.exists()) {
                         int response = JOptionPane.showConfirmDialog(null,
-                                "The chosen directory already exists. Do you want to replace it?", "File Already Exists",
-                                JOptionPane.YES_NO_OPTION);
+                                "Le répertoire sélectionné existe déjà. Voulez-vous le remplacer ?","Fichier déjà existant.",JOptionPane.YES_NO_OPTION);
                         if (response == JOptionPane.YES_OPTION) {
                             return filePath;
                         } else {

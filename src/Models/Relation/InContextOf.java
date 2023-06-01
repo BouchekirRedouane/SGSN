@@ -117,20 +117,20 @@ public class InContextOf extends Relations {
         if(this.target!= null && this.target!= null ){
             if(source.getY()+50+source.getHeight()/2 > target.getY()-target.getHeight()/2 && source.getY()-50-source.getHeight()/2 < target.getY()+target.getHeight()/2 ){
                 if(source.getX()<target.getX()){
-                     drawArrowLine( g, source.getX(), source.getY(), target.getX()-target.getWidth()/2, target.getY(), 15,10 );
+                     drawArrowLine( g, source.getX(), source.getY(), target.getX()-target.getWidth()/2, target.getY(), 10,7 );
                      this.xtarget=target.getX()-target.getWidth()/2;
                      this.ytarget=target.getY();
                 }else{
-                    drawArrowLine( g, source.getX(), source.getY(), target.getX()+target.getWidth()/2, target.getY(), 15,10 );
+                    drawArrowLine( g, source.getX(), source.getY(), target.getX()+target.getWidth()/2, target.getY(), 10,7 );
                      this.xtarget= target.getX()+target.getWidth()/2;
                      this.ytarget=target.getY();
                 }
             }else if( source.getY()<target.getY()){
-                drawArrowLine( g, source.getX(), source.getY(), target.getX(), target.getY()-target.getHeight()/2, 15,10);
+                drawArrowLine( g, source.getX(), source.getY(), target.getX(), target.getY()-target.getHeight()/2, 10,7);
                  this.xtarget=target.getX();
                      this.ytarget=target.getY()-target.getHeight()/2;
             }else if(source.getY()>target.getY()){
-                drawArrowLine( g, source.getX(), source.getY(), target.getX(), target.getY()+target.getHeight()/2, 15,10);
+                drawArrowLine( g, source.getX(), source.getY(), target.getX(), target.getY()+target.getHeight()/2, 10,7);
                  this.xtarget= target.getX();
                      this.ytarget=target.getY()+target.getHeight()/2;
 

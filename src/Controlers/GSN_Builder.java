@@ -178,7 +178,7 @@ public class GSN_Builder {
         
         if(ID.equals("") || Desc.equals(""))
         {
-            JOptionPane.showConfirmDialog(null, "Error name or path empty", "error", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showConfirmDialog(null, "erreur Nom ou chemin vide.","Erreur.", JOptionPane.PLAIN_MESSAGE);
             System.out.println("Error name or path empty");
             return false;
         }
@@ -193,7 +193,7 @@ public class GSN_Builder {
         //modify because like this it is always returning false (if you didnt edit the id of the element)
             for(Element elmnt : elmnts){
                 if(ID.equals(elmnt.getID())){
-                    JOptionPane.showConfirmDialog(null, "ID should be unique", "ID error", JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane.showConfirmDialog(null, "L'ID doit être unique.","Erreur d'ID.", JOptionPane.PLAIN_MESSAGE);
                     return false;
                 }
             }
@@ -207,7 +207,7 @@ public class GSN_Builder {
         
         if(ID.equals("") || Desc.equals(""))
         {
-            JOptionPane.showConfirmDialog(null, "Error name or path empty", "error", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showConfirmDialog(null, "erreur Nom ou chemin vide.","Erreur.", JOptionPane.PLAIN_MESSAGE);
             System.out.println("Error name or path empty");
             return false;
         }
@@ -226,7 +226,7 @@ public class GSN_Builder {
         
             for(Element elmnt : elmnts){
                 if(ID.equals(elmnt.getID()  )&& elmnt!=e){
-                    JOptionPane.showConfirmDialog(null, "ID should be unique", "ID error", JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane.showConfirmDialog(null, "L'ID doit être unique.","Erreur d'ID.", JOptionPane.PLAIN_MESSAGE);
                     return false;
                 }
             }

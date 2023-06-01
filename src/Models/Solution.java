@@ -131,7 +131,7 @@ public void draw(Graphics g){
          draw(g,X,Y, this.ID + "\n\n" + this.descreption);
      }
 public void calcule_dimentions(Graphics g){
-         g.setFont(new Font("Arial", Font.BOLD, 16));
+         g.setFont(new Font("Arial", Font.BOLD, 13));
                  int textWidth=0;
                  int maxww=0;
                  int minTW= (int) pow(5,100);
