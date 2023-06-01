@@ -525,6 +525,11 @@ public class GsnPannel extends javax.swing.JPanel {
         jButton1.setMaximumSize(new java.awt.Dimension(152, 21));
         jButton1.setMinimumSize(new java.awt.Dimension(152, 21));
         jButton1.setPreferredSize(new java.awt.Dimension(149, 21));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jToolBar2.add(jButton1);
         jToolBar2.add(jSeparator3);
 
@@ -852,6 +857,12 @@ public class GsnPannel extends javax.swing.JPanel {
             Logger.getLogger(GsnPannel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_SaveXml_BtnActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        fmanager.saveJPanelAsImage(jPanel6,this.gsn);
+                    JOptionPane.showConfirmDialog(null, "enregistré avec succès.\n "+ this.gsn.getPath().replace(".GSN", ".png"), "image Enregistrer", JOptionPane.PLAIN_MESSAGE);
+
+    }//GEN-LAST:event_jButton1ActionPerformed
     private void jPanel6MouseMoved(java.awt.event.MouseEvent evt) {                                     
     	jPanel6.jPanel6MouseMoved( evt);
      }

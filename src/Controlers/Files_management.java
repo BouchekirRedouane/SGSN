@@ -26,10 +26,16 @@ import Models.Relation.InContextOf;
 import Models.Relation.SupportedBy;
 import Views.GsnPannel;
 import Views.MainFram;
+import Views.jpanel;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.FileWriter;
 import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileView;
@@ -98,6 +104,9 @@ public class Files_management {
 	            
 	            
 	        } catch (JAXBException ex) {
+                                
+                                                    JOptionPane.showConfirmDialog(null, "Ce fichier est corrupt" ,"Le fichier est Corrupt.", JOptionPane.PLAIN_MESSAGE);
+                    
 	            Logger.getLogger(GsnPannel.class.getName()).log(Level.SEVERE, null, ex);
 	        }
 			return gsn;
@@ -112,6 +121,7 @@ public class Files_management {
                  mainf.getjTabbedPane2().addTab("GSN: "+ gsn.getName(), g);
                  mainf.getjTabbedPane2().setIconAt(mainf.getjTabbedPane2().getTabCount()-1, new javax.swing.ImageIcon(getClass().getResource("/Ressources/24diagram.png")));
                  mainf.setI(mainf.getI()+1);
+                 if(gsn.getPath()==null){
                   int result = JOptionPane.showConfirmDialog(null, "Voulez-vous faire une anlyse Syntaxique au GSN importe?", "Analyse Syntaxique", JOptionPane.YES_NO_OPTION);
 
                     if (result == JOptionPane.YES_OPTION) {
@@ -119,6 +129,7 @@ public class Files_management {
                     } else {
                        
                     }
+                 }
                  }
         }
       //for creat gsn  
@@ -241,6 +252,45 @@ public class Files_management {
         }
 
         return null;
+    }
+   
+     public  void saveJPanelAsImage(jpanel panel,GSN gsn) {
+         int maxx= 0;
+         int maxy=0;
+         int minx=Integer.MAX_VALUE;
+            int miny=Integer.MAX_VALUE;
+         for(Element elmnt : gsn.getElements()){
+             
+         
+             if (elmnt.getX()+elmnt.getWidth()/2>maxx)
+                 maxx=elmnt.getX()+elmnt.getWidth()/2;
+              if(elmnt.getX()-elmnt.getWidth()/2<minx)
+                 minx=elmnt.getX()-elmnt.getWidth()/2;
+             if (elmnt.getY()+elmnt.getHeight()/2>maxy)
+                 maxy=elmnt.getY()+elmnt.getHeight()/2; 
+             if (elmnt.getY()-elmnt.getHeight()/2<miny)
+                 miny=elmnt.getY()-elmnt.getHeight()/2; 
+             
+         }
+        int width = maxx-minx+30;
+        int height = maxy-miny+30;
+        System.out.println(minx+"/"+miny);
+
+        
+        
+        BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        Graphics g2d = image.createGraphics();
+            
+        g2d.translate(-minx+15, -miny+15);
+        panel.paintComponent(g2d);
+        g2d.dispose();
+
+        try {
+            ImageIO.write(image, "png", new File(gsn.getPath().replace(".GSN", ".png")));
+            System.out.println("JPanel saved as image successfully.");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
         
         
