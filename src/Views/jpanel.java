@@ -55,6 +55,10 @@ public class jpanel extends javax.swing.JPanel {
         
         
     }
+
+    public ArrayList<Element> getElementss() {
+        return Elementss;
+    }
     
      
     

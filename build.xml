@@ -10,6 +10,14 @@
 <project name="SGSN" default="default" basedir=".">
     <description>Builds, tests, and runs the project SGSN.</description>
     <import file="nbproject/build-impl.xml"/>
+    
+<!--<dependency>
+  <groupId>guru.nidi</groupId>
+  <artifactId>graphviz-java</artifactId>
+  <version>0.18.1</version>
+</dependency>-->
+
+    
     <!--
 
     There exist several targets which are by default empty and which can be 

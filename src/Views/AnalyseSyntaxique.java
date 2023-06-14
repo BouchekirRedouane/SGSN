@@ -43,7 +43,7 @@ public class AnalyseSyntaxique extends javax.swing.JFrame {
       String[][] Data = {
                 {"E01",  "Chaque diagramme GSN devrait avoir un objectif principal unique."},
                 {"E02", "Erreur : Le but-stratégie doit être lié à au moins un autre élément ou être marqué comme non développé."},
-                {"E03", "Erreur : L'assomption-justification-solution-contexte doit être lié à un seul autre élément."},
+                {"E03", "Erreur : L'assumption-justification-solution-contexte doit être lié à au moins un seul autre élément."},
                 {"E04", "Warning : Les numéros d'identifiant devraient être ordonnés par type d'élément '1-2-3-4, etc.'."},
                 {"E05", "Erreur : L'identifiant doit être lié à l'élément."},
                 {"E06", "Erreur : Tous les éléments doivent être accessibles à partir des éléments racine."},

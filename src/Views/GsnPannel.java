@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
+import prism.PrismException;
 
 
 
@@ -27,6 +28,7 @@ public class GsnPannel extends javax.swing.JPanel {
 //            = new jpanel(gsn);
     GSN_Builder builder;
     Files_management fmanager;
+    int i =1;
     
     
     
@@ -574,6 +576,11 @@ public class GsnPannel extends javax.swing.JPanel {
         jButton4.setFocusable(false);
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jButton4.setIconTextGap(2);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jToolBar2.add(jButton4);
 
         jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -863,6 +870,21 @@ public class GsnPannel extends javax.swing.JPanel {
                     JOptionPane.showConfirmDialog(null, "enregistré avec succès.\n "+ this.gsn.getPath().replace(".GSN", ".png"), "image Enregistrer", JOptionPane.PLAIN_MESSAGE);
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        //        new AnalyseSemantique(this.gsn);
+        System.out.println("iiiiiiiiiiiiiiiiiiiiiiiiiii:::::::::::::"+i);
+        try {
+            new AnalyseSemantique(this.gsn);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(GsnPannel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(GsnPannel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (PrismException ex) {
+            Logger.getLogger(GsnPannel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("iiiiiiiiiiiiiiiiiiiiiiiiiii:::::::::::::"+i);
+    }//GEN-LAST:event_jButton4ActionPerformed
     private void jPanel6MouseMoved(java.awt.event.MouseEvent evt) {                                     
     	jPanel6.jPanel6MouseMoved( evt);
      }

@@ -1,0 +1,26 @@
+digraph G {
+  node [shape = circle,  style = filled,fillcolor = "#ffe699",color=orange, stroke = red, ];
+  s0;
+  s1;
+  s2;
+  s3;
+  s4;
+  s5;
+  s6;
+  s7;
+  s7 -> s7;
+  s8;
+  s8 -> s8;
+  s9;
+  s9 -> s9;
+  s0 -> s1[color=grey]
+  s0 -> s2
+  s0 -> s3
+  s2 -> s4
+  s3 -> s5
+  s4 -> s6[color=grey]
+  s5 -> s6[color=grey]
+  s4 -> s7
+  s4 -> s8
+  s5 -> s9
+}

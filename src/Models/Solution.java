@@ -148,7 +148,7 @@ public void calcule_dimentions(Graphics g){
                          int wordWidth = g.getFontMetrics().stringWidth(word);
                          if(maxww<5/4*wordWidth){
                             maxww=5/4*wordWidth;
-                            System.out.println(word);
+//                            System.out.println(word);
                         }
                          
                     
@@ -165,7 +165,7 @@ public void calcule_dimentions(Graphics g){
                         }
                         if(minTW>lineWidth){
                             minTW=lineWidth;
-                            System.out.println(lines[i]);
+//                            System.out.println(lines[i]);
 
                         }
                     }
@@ -175,7 +175,6 @@ public void calcule_dimentions(Graphics g){
                  finalTW=textHeight+(textWidth-textHeight)/2;
 //  compter la valeur final de finalTW                
                 while(textHeight*3/2<finalTW &&( minTW<finalTW || maxww*4/3<finalTW) ){
-                    System.out.println(textHeight+":H////while loop///W:"+finalTW);
                    finalTW=textHeight+(finalTW-textHeight)/2;  
                    textHeight += Fontheight;
 //                   System.out.println(textHeight+":H///////W:"+finalTW);

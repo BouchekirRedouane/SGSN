@@ -213,12 +213,12 @@ public class GSN_Builder {
         }
         
          if(e instanceof Solution && !ID.matches("Sn\\d+")){
-            System.out.print("bouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuucle");
+//            System.out.print("bouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuucle");
             JOptionPane.showConfirmDialog(null, "l'ID d'une Solution doit commancer par Sn", "ID error", JOptionPane.PLAIN_MESSAGE);
             return false;
         }else if(!type.equals("Solution") &&(ID.charAt(0) != type.charAt(0) || !ID.matches(type.charAt(0)+"\\d+"))){
-               System.out.println(type);
-               System.out.println("bouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuucle22222222222222222222222222222222222222");
+//               System.out.println(type);
+//               System.out.println("bouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuucle22222222222222222222222222222222222222");
                
             JOptionPane.showConfirmDialog(null, "l'ID d'un ::"+type+" doit commancer par un "+type.charAt(0), "ID error", JOptionPane.PLAIN_MESSAGE);
             return false;

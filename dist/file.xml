@@ -18,8 +18,8 @@ violate geo-fences (NFZ)</descreption>
         </goal>
         <Assumption>
             <id>A1</id>
-            <x>1029</x>
-            <y>77</y>
+            <x>1091</x>
+            <y>76</y>
             <height>135</height>
             <width>247</width>
             <descreption>all abnormal 
@@ -83,8 +83,8 @@ z1 &gt; 0</descreption>
         </Context>
         <solution>
             <id>Sn1</id>
-            <x>430</x>
-            <y>570</y>
+            <x>408</x>
+            <y>617</y>
             <height>165</height>
             <width>165</width>
             <descreption>Formal
@@ -106,13 +106,13 @@ properties
 Evidence.
 
 </descreption>
-            <Link1></Link1>
+            <Link1>D:\Studies\PFE\r141C_1.pdf</Link1>
             <Link2></Link2>
         </solution>
         <solution>
             <id>Sn3</id>
-            <x>881</x>
-            <y>602</y>
+            <x>976</x>
+            <y>560</y>
             <height>86</height>
             <width>86</width>
             <descreption>Theorem 
